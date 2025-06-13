@@ -1,0 +1,17 @@
+---
+title: Copy Folders
+description: Copies Atmosphere folders to the Windows directory
+actions:
+# IM STUPID
+  - !cmd:
+    command: 'xcopy "AtmosphereDesktop" "C:\Windows\AtmosphereDesktop" /E /H /K /Y /I'
+    exeDir: true
+    wait: true
+  - !cmd:
+    command: 'xcopy "AtmosphereModules" "C:\Windows\AtmosphereModules" /E /H /K /Y /I'
+    exeDir: true
+    wait: true
+  - !cmd:
+    command: 'xcopy "Themes" "C:\Windows\Resources\Themes" /E /H /K /Y /I'
+    exeDir: true
+    wait: true

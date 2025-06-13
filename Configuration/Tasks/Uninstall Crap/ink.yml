@@ -1,0 +1,28 @@
+---
+title: Remove Microsoft Ink
+description: This task removes the Microsoft Ink feature from Windows, which is often not needed and can be considered bloatware.
+actions:
+# Why did I make this?
+ - !cmd:
+   command: 'takeown /f "C:\Program Files\Common Files\microsoft shared\ink" /r /d y'
+   runas: currentUserElevated
+   exeDir: true
+   wait: true 
+ - !cmd:
+   command: 'icacls "C:\Program Files\Common Files\microsoft shared\ink" /grant Administrators:F /T'
+   runas: currentUserElevated
+   exeDir: true
+   wait: true
+ - !registryValue:
+   path: 'HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnce'
+   value: "DeleteOnReboot" 
+   type: REG_SZ
+   data: "C:\\cleanup\\remove.cmd"
+ - !cmd:
+   command: 'mkdir C:\cleanup'
+   exeDir: true
+   wait: true
+ - !cmd:
+   command: 'copy /Y "remove.cmd" "C:\cleanup\"'
+   exeDir: true
+   wait: true 

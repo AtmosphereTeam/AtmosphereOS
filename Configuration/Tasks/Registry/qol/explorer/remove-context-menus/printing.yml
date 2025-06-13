@@ -1,0 +1,9 @@
+---
+title: Remove 'Printing' from Context Menus
+description: Removes printing from context menus as users normally print from apps anyways
+actions:
+  # Who uses printing anyway?
+  - !cmd:
+    command: '"AtmosphereDesktop\6. Advanced Configuration\Services\Printing\Disable Printing (default).cmd" "/silent"'
+    exeDir: true
+    wait: true

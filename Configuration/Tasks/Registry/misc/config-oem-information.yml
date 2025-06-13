@@ -1,0 +1,39 @@
+---
+title: Configure OEM Information
+description: Configures OEM information to contain the Atmosphere version and the Atmosphere Discord server
+actions:
+  - !powerShell:
+    command: |
+      $version = 'v0.0.1'
+
+      Write-Output 'Setting boot entry name...'
+      bcdedit /set description """AtmosphereOS $(('10', '11')[[int]([System.Environment]::OSVersion.Version.Build -ge 22000)]) $version"""
+
+      Write-Output 'Setting other versioned OEM information...'
+      $reportedVer = """AtmosphereOS $version"""
+      # Shows in Settings
+      Set-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation' -Name 'Model' -Value $reportedVer -Force
+      # Shows in winver
+      Set-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion' -Name 'RegisteredOrganization' -Value $reportedVer -Force
+    wait: true
+  - !registryValue:
+    path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation'
+    value: 'Manufacturer'
+    data: 'Atmosphere Team'
+    type: REG_SZ
+#  - !registryValue:
+#    path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation'
+#    value: 'SupportURL'
+#    data: 'Temporary URL'
+#    type: REG_SZ
+#  - !registryValue:
+#    path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation'
+#    value: 'SupportPhone'
+#    data: 'Temporary Phone'
+#    type: REG_SZ
+  - !registryValue:
+    path: 'HKLM\SOFTWARE\Atmosphere'
+    value: 'WinreFallbackFixed'
+    data: '1'
+    type: REG_SZ
+

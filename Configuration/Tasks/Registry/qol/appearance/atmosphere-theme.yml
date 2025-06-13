@@ -1,0 +1,75 @@
+---
+title: Add Theme
+description: Adds and sets the Atmosphere themes by default
+actions:
+    # Apply theme file and set recent themes
+  - !powerShell:
+    command: |
+      .\AtmosphereModules\initPowerShell.ps1
+      Set-Theme -Path """$([Environment]::GetFolderPath('Windows'))\Resources\Themes\atmosphere-v0.4.x-dark.theme"""
+      Set-ThemeMRU
+    wait: true
+    exeDir: true
+    runas: currentUserElevated
+    # Weird
+  - !registryValue:
+    path: 'HKCU\Software\Microsoft\Windows\CurrentVersion\Themes'
+    value: 'ThemeMRU'
+    data: 'C:\WINDOWS\resources\Themes\atmosphere-v0.4.x-dark.theme'
+    type: REG_SZ
+  - !registryValue
+    path: 'HKCU\Software\Microsoft\Windows\CurrentVersion\Themes'
+    value: 'CurrentTheme'
+    data: 'C:\Windows\Resources\Themes\atmosphere-v0.4.x-dark.theme'
+
+    # Applies Atmosphere lockscreen background
+    # Also disables fun facts, tips, tricks, and more on lockscreen - only on Enterprise/Education
+  - !registryValue:
+    path: 'HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization'
+    value: 'LockScreenOverlaysDisabled'
+    data: '1'
+    type: REG_DWORD
+  - !registryValue:
+    path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager'
+    value: 'RotatingLockScreenEnabled'
+    data: '0'
+    type: REG_DWORD
+  - !powerShell:
+    command: |
+      foreach ($userKey in (Get-ChildItem "HKLM:SOFTWARE\Microsoft\Windows\CurrentVersion\Authentication\LogonUI\Creative").PsPath) {
+          Set-ItemProperty -Path $userKey -Name 'RotatingLockScreenEnabled' -Type DWORD -Value 0 -Force
+      }
+    exeDir: true
+    wait: true
+  - !powerShell:
+    command: |
+      .\AtmosphereModules\initPowerShell.ps1
+      Set-LockscreenImage
+    exeDir: true
+    wait: true
+    runas: currentUserElevated
+
+    # Set Atmosphere theme as default for new users
+  - !registryValue:
+    path: 'HKCU\Software\Policies\Microsoft\Windows\Personalization'
+    value: 'ThemeFile'
+    data: '%windir%\Resources\Themes\atmosphere-v0.4.x-dark.theme'
+    type: REG_SZ
+  - !cmd:
+    command: 'C:\Windows\Resources\Themes\atmosphere-v0.4.x-dark.theme'
+    wait: true
+    runas: currentUser
+    # Backup
+  - !registryValue:
+    path: 'HKCU\Control Panel\Desktop'
+    value: 'WallPaper'
+    data: '%windir%\AtmosphereModules\Wallpapers\atmosphere-v0.4.x-dark.png'
+    type: REG_SZ
+  - !cmd:
+    command: 'start "" "C:\Windows\Resources\Themes\atmosphere-v0.4.x-dark.theme"'
+    wait: true
+    runas: currentUser
+  - !cmd:
+    command: 'taskkill /f /im SystemSettings.exe'
+    wait: true
+    runas: currentUserElevated

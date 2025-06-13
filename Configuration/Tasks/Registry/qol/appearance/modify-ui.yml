@@ -1,0 +1,12 @@
+---
+title: Modify Windows UI 
+description: Modifies Windows UI
+actions:
+# Final v0.1.0 actions before realese
+  - !writeStatus: {status: 'Modifying UI'}
+  - !powerShell:
+    command: '.\SOFTWARE.ps1 -ModifyUi'
+    exeDir: true
+    wait: true
+    weight: 120
+    runas: currentUserElevated

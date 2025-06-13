@@ -1,0 +1,28 @@
+---
+title: Disable Resume
+description: Disables the resume app from device and continue on windows 11 feature
+privilege: TrustedInstaller
+actions:
+# Who would use this feature anyway?
+  - !registryValue:
+    path: 'HKCU\Software\Microsoft\Windows\CurrentVersion\CrossDeviceResume\Configuration'
+    value: 'IsResumeAllowed'
+    data: 0
+    type: REG_DWORD
+    operation: set
+    scope: allUsers
+  - !registryValue:
+    path: 'HKLM\SOFTWARE\Policies\Microsoft\Windows\System'
+    value: 'EnableCdp'
+    data: 0
+    type: REG_DWORD
+  - !registryValue:
+    path: 'HKLM\SOFTWARE\Microsoft\PolicyManager\default\Connectivity\DisableCrossDeviceResume'
+    value: 'value'
+    data: 1
+    type: REG_DWORD
+  - !registryValue:
+    path: 'HKLM\SOFTWARE\Microsoft\PolicyManager\default\Connectivity\DisableCrossDeviceResume'
+    value: 'policytype'
+    data: 3
+    type: REG_DWORD

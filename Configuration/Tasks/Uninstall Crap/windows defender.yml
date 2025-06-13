@@ -1,0 +1,46 @@
+---
+title: Windows Defender
+description: Removes Windows Defender and disables its services
+privilege: TrustedInstaller
+actions:
+    # New Solution SoonTM
+    
+    # ---------- Windows Defender
+  - !writeStatus: {status: 'Removing Windows Defender'}
+  - !taskKill: {name: "NisSrv"}
+  - !taskKill: {name: "SecurityHealthHost"}
+  - !taskKill: {name: "SecurityHealthService"}
+  - !taskKill: {name: "SecurityHealthSystray"}
+  - !taskKill: {name: "SkypeBackgroundHost"}
+  - !taskKill: {name: "MsMpEng"}
+  - !taskKill: {name: "msiexec"}
+  - !file: {path: "%windir%\\System32\\smartscreen.exe"}
+  - !file: {path: "%windir%\\System32\\smartscreenps.dll"}
+  - !file: {path: "%windir%\\System32\\SecurityHealthSystray.exe"}
+  - !file: {path: "%windir%\\System32\\SecurityHealthService.exe"}
+  - !file: {path: "%windir%\\System32\\SecurityHealthAgent.dll"}
+  - !file: {path: "%windir%\\System32\\SecurityHealthHost.exe"}
+  - !file: {path: "%windir%\\System32\\SecurityHealthSSO.dll"}
+  - !file: {path: "%windir%\\System32\\SecurityHealthCore.dll"}
+  - !file: {path: "%windir%\\System32\\SecurityHealthProxyStub.dll"}
+  - !file: {path: "%windir%\\System32\\SecurityHealthUdk.dll"}
+  - !file: {path: "%ProgramW6432%\\Windows Defender", weight: 30}
+  - !file: {path: "%ProgramData%\\Microsoft\\Windows Defender", weight: 30}
+  - !file: {path: "%ProgramFiles(x86)%\\Windows Defender", weight: 30}
+  - !file: {path: "%windir%\\System32\\drivers\\WdNisDrv.sys"}
+  - !file: {path: "%ProgramW6432%\\Windows Defender Advanced Threat Protection"}
+  - !file: {path: "%SystemDrive%\\ProgramData\\Microsoft\\Windows Defender Advanced Threat Protection"}
+#  - !file:
+#    path: "%windir%\\System32\\drivers\\cldflt.sys"
+  - !scheduledTask:
+    path: "\\Microsoft\\Windows\\Windows Defender\\Windows Defender Cache Maintenance"
+    operation: delete
+  - !scheduledTask:
+    path: "\\Microsoft\\Windows\\Windows Defender\\Windows Defender Cleanup"
+    operation: delete
+  - !scheduledTask:
+    path: "\\Microsoft\\Windows\\Windows Defender\\Windows Defender Scheduled Scan"
+    operation: delete
+  - !scheduledTask:
+    path: "\\Microsoft\\Windows\\Windows Defender\\Windows Defender Verification"
+    operation: delete

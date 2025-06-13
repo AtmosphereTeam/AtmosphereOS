@@ -1,0 +1,111 @@
+---
+title: Services and Drivers
+description: Configures services and drivers to reduce background system resource utilization
+actions:
+  # ----------------------------------
+  # - Potential references           -
+  # - Mostly upon IoT recommandation -
+  # ----------------------------------
+  # https://learn.microsoft.com/en-us/windows-server/remote/remote-desktop-services/rds-vdi-recommendations-2004
+  # https://learn.microsoft.com/en-us/windows-server/security/windows-services/security-guidelines-for-disabling-system-services-in-windows-server
+  # https://learn.microsoft.com/en-us/windows/iot/iot-enterprise/optimize/services
+
+  # Back up default Windows serivces & drivers
+  - !powerShell:
+    command: |
+      .\BACKUP.ps1 -FilePath """$([Environment]::GetFolderPath('Windows'))\AtmosphereModules\Other\winServices.reg"""
+    wait: true
+    exeDir: true
+
+  ##############################################################################################
+  ## SCRIPTS                                                                                  ##
+  ##############################################################################################
+
+  - !writeStatus: {status: 'Disabling File Sharing'}
+  - !powerShell:
+    command: '.\AtmosphereModules\Scripts\ScriptWrappers\DisableFileSharing.ps1 -Silent'
+    exeDir: true
+    wait: true
+    runas: currentUserElevated
+
+  - !writeStatus: {status: 'Disabling Location'}
+  - !cmd:
+    command: '"AtmosphereDesktop\3. General Configuration\Location\Disable Location (default).cmd" /silent'
+    exeDir: true
+    wait: true
+
+  - !writeStatus: {status: 'Configuring Indexing'}
+  - !cmd:
+    command: '"AtmosphereDesktop\3. General Configuration\Search Indexing\Minimal Search Indexing (default).cmd" /silent'
+    exeDir: true
+    wait: true
+
+  ##############################################################################################
+  ## SERVICES                                                                                 ##
+  ##############################################################################################
+
+  - !writeStatus: {status: 'Configuring services'}
+  - !registryKey: {path: "HKLM\\System\\CurrentControlSet\\Services\\WdNisDrv", errorAction: Log}
+  - !registryKey: {path: "HKLM\\System\\CurrentControlSet001\\Services\\WdNisDrv", errorAction: Log}
+  - !registryKey: {path: "HKLM\\System\\CurrentControlSet\\Services\\WdNisSvc", errorAction: Log}
+  - !registryKey: {path: "HKLM\\System\\CurrentControlSet001\\Services\\WdNisSvc", errorAction: Log}
+  - !taskKill: {name: "devicecensus"}
+  - !taskKill: {name: "UsoClient"}
+  - !taskKill: {name: "MoUsoCoreWorker"}
+  - !service: {name: "WaaSMedicSvc", operation: stop}
+  - !service: {name: "WpcMonSvc", operation: delete}
+  - !service: {name: "WMPNetworkSvc", operation: delete}
+  - !service: {name: "StorSvc", operation: stop}
+  - !service: {name: "wisvc", operation: stop}
+  # Breaks virtual/cloud files which is required by many sync services like Nextcloud/Proton
+  # - !service: {name: "CldFlt", operation: delete, device: true}
+  # - !service: {name: "Sense", operation: delete}
+  - !service: {name: "webthreatdefusersvc*", operation: delete, ignoreErrors: true}
+  - !service: {name: "webthreatdefsvc", operation: delete, deleteUsingRegistry: true}
+  - !service: {name: "UevAgentService", operation: delete}
+  - !service: {name: "cloudidsvc", operation: delete}
+  - !taskKill: {name: "SecurityHealthSystray"} 
+  - !taskKill: {name: "SecurityHealthService"}
+  - !service: {name: "SecurityHealthService", operation: stop}
+  - !service: {name: "wscsvc", operation: stop}
+  - !service: {name: "BITS", operation: stop}
+  - !service: {name: "DoSvc", operation: stop}
+  - !service: {name: "iphlpsvc", operation: stop}
+  - !service: {name: "WSearch", operation: stop, option: 'openshell'}
+  - !service: {name: "Winmgmt", operation: stop}
+  - !service: {name: "ClipSVC", operation: stop} 
+  - !service: {name: "DiagTrack", operation: delete}
+  - !service: {name: "RetailDemo", operation: stop}
+  - !service: {name: "diagnosticshub.standardcollector.service", operation: stop}
+  - !service: {name: "dmwappushservice", operation: stop}
+  - !service: {name: "InstallService", operation: stop}  
+  - !service: {name: "LicenseManager", operation: stop}
+  - !service: {name: "lfsvc", operation: stop}
+  - !service: {name: "MapsBroker", operation: stop}
+  - !service: {name: "NetTcpPortSharing", operation: stop}
+  - !service: {name: "RemoteAccess", operation: stop}
+  - !service: {name: "RemoteRegistry", operation: stop}
+  - !service: {name: "SharedAccess", operation: stop}
+  - !service: {name: "TrkWks", operation: stop}
+  - !service: {name: "WbioSrvc", operation: stop}
+  - !service: {name: "WSearch", operation: change, startup: 4, option: 'openshell'}  
+#  - !service: {name: "BITS", operation: change, startup: 3} i need to research this a bit
+    # Firewall rules to prevent the startmenu from talking
+  - !registryValue: {path: 'HKLM\SYSTEM\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\FirewallRules', value: 'Block SearchApp', type: REG_SZ, data: 'v2.32|Action=Block|Active=TRUE|Dir=Out|RA42=IntErnet|RA62=IntErnet|App=%SystemRoot%\SystemApps\Microsoft.Windows.Search_cw5n1h2txyewy\SearchApp.exe|Name=Block SearchApp|Desc=Block Cortana Outbound UDP/TCP Traffic|'}
+  - !registryValue: {path: 'HKLM\SYSTEM\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\FirewallRules', value: 'Block SearchHost', type: REG_SZ, data: 'v2.32|Action=Block|Active=TRUE|Dir=Out|RA42=IntErnet|RA62=IntErnet|App=%SystemRoot%\SystemApps\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\SearchHost.exe|Name=Block SearchHost|Desc=Block Cortana Outbound UDP/TCP Traffic|'}
+  - !registryValue: {path: 'HKLM\SYSTEM\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\FirewallRules', value: 'Block StartMenuExperienceHost', type: REG_SZ, data: 'v2.32|Action=Block|Active=TRUE|Dir=Out|RA42=IntErnet|RA62=IntErnet|App=%SystemRoot%\SystemApps\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy\StartMenuExperienceHost.exe|Name=Block StartMenuExperienceHost|Desc=Block Cortana Outbound UDP/TCP Traffic|'}
+    # Block Windows Settings from making connections
+  - !registryValue: {path: 'HKLM\SYSTEM\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\FirewallRules', value: 'Block SystemSettings', type: REG_SZ, data: 'v2.32|Action=Block|Active=TRUE|Dir=Out|RA42=IntErnet|RA62=IntErnet|App=%SystemRoot%\ImmersiveControlPanel\SystemSettings.exe|Name=Block SystemSettings|Desc=Block Windows Settings Outbound UDP/TCP Traffic|'}
+    # Block explorer from making connections, most notably when selecting "Home"
+  - !registryValue: {path: 'HKLM\SYSTEM\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\FirewallRules', value: 'Block Explorer', type: REG_SZ, data: 'v2.32|Action=Block|Active=TRUE|Dir=Out|RA42=IntErnet|RA62=IntErnet|App=%SystemRoot%\explorer.exe|Name=Block Explorer|Desc=Block Explorer Outbound UDP/TCP Traffic|'}
+
+  ##############################################################################################
+  ## DRIVERS                                                                                  ##
+  ##############################################################################################
+
+  - !writeStatus: {status: 'Configuring drivers'}
+
+  - !service: {name: 'GpuEnergyDrv', operation: change, startup: 4}
+    # NetBios support can be enabled with the file sharing script
+  - !service: {name: 'NetBT', operation: change, startup: 4}
+  - !service: {name: 'Telemetry', operation: change, startup: 4}

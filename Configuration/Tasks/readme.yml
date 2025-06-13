@@ -1,0 +1,8 @@
+---
+title: Copy README.txt
+description: Copies README.txt to users desktop
+actions:
+  - !cmd:
+    command: 'copy /y "README.txt" "%userprofile%\Desktop"'
+    exeDir: true
+    wait: true

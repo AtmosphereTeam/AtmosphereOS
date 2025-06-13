@@ -1,0 +1,8 @@
+---
+title: Applies Atmosphere' Network Settings
+description: Applies Atmosphere' optimised network settings
+actions:
+  - !cmd:
+    command: '"AtmosphereDesktop\8. Troubleshooting\Network\Reset Network to Atmosphere Default.cmd" /silent'
+    exeDir: true
+    wait: true

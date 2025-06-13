@@ -1,0 +1,31 @@
+---
+title: Cleanup
+description: Cleans up most of the remaining things
+privilege: TrustedInstaller
+actions:
+  # TrustedInstaller Mode lol
+ - !writeStatus: {status: 'Cleaning up'}
+   # Xbox cleanup
+ - !file: {path: '%ProgramFiles%\WindowsApps\Microsoft.GamingApp*', option: 'uninstall-xbox'}
+ - !file: {path: '%ProgramFiles%\WindowsApps\Microsoft.XboxGameCallableUI*', option: 'uninstall-xbox'}
+ - !file: {path: '%ProgramFiles%\WindowsApps\Microsoft.XboxGamingOverlay*', option: 'uninstall-xbox'}
+ - !file: {path: '%ProgramFiles%\WindowsApps\Microsoft.XboxSpeechToTextOverlay*', option: 'uninstall-xbox'}
+ - !file: {path: '%ProgramFiles%\WindowsApps\Microsoft.Xbox.TCUI*', option: 'uninstall-xbox'}
+ - !service {name: 'XboxGipSvc', operation: delete, option: 'uninstall-xbox'}
+ - !service {name: 'XboxNetApiSvc', operation: delete, option: 'uninstall-xbox'}
+ - !service {name: 'XblAuthManager', operation: delete, option: 'uninstall-xbox'}
+ - !service {name: 'XblGameSave', operation: delete, option: uninstall-xbox'}
+ - !service {name: 'BcastDVRUserService*', operation: delete, option: 'uninstall-xbox'}
+   # Edge cleanup
+ - !file: {path: '%ProgramFiles%\WindowsApps\Microsoft.MicrosoftEdge*', option: 'remove-edge'}
+   # Ink cleanup
+ - !file: {path: '%ProgramFiles%\WindowsApps\Microsoft.Ink*'}
+   # Scheduled tasks
+ - !scheduledTask {path: "\\Microsoft\\Windows\\Customer Experience Improvement Program\\Consolidator", operation: delete}
+ - !scheduledTask {path: "\\Microsoft\\Windows\\Customer Experience Improvement Program\\KernelCeipTask", operation: delete}
+ - !scheduledTask {path: "\\Microsoft\\Windows\\Customer Experience Improvement Program\\UsbCeip", operation: delete}
+ - !scheduledTask {path: "\\Microsoft\\Windows\\Application Experience\\ProgramDataUpdater", operation: delete}
+ - !scheduledTask {path: "\\Microsoft\\Windows\\Application Experience\\StartupAppTask", operation: delete}
+ - !scheduledTask {path: "\\Microsoft\\Windows\\HelloFace\\FODCleanupTask", operation: delete}
+ - !scheduledTask {path: "\\Microsoft\\Windows\\Maps\\MapsToastTask", operation: delete}
+ - !scheduledTask {path: "\\Microsoft\\Windows\\Maps\\MapsUpdateTask", operation: delete}

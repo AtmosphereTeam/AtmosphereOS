@@ -1,0 +1,13 @@
+---
+title: Configure PowerShell
+description: Configures PowerShell for the optimal privacy and usability
+actions:
+    # Disable PowerShell Core telemetry
+  - !cmd: {command: 'setx POWERSHELL_TELEMETRY_OPTOUT 1'}
+
+    # Set PowerShell execution policy to Unrestricted
+  - !registryValue:
+    path: 'HKLM\SOFTWARE\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell'
+    value: 'ExecutionPolicy'
+    data: 'Unrestricted'
+    type: REG_SZ

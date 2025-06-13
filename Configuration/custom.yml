@@ -1,0 +1,81 @@
+---
+title: Root Playbook File
+description: Runs all of the Playbook files
+actions:
+    # AME Wizard seemingly has a bug where it doesn't mount other user's Registry hives
+  - !writeStatus: {status: 'Preparing hives'}
+  - !powerShell:
+    command: |
+      $profileList = Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList' -Name 'ProfilesDirectory', 'Default' -EA 0
+      $usersPath = if ([string]::IsNullOrEmpty($profileList.ProfilesDirectory)) { """$env:SystemDrive\Users""" } else { $profileList.ProfilesDirectory }
+      $defaultPath = if ([string]::IsNullOrEmpty($profileList.Default)) { """$usersPath\Default""" } else { $profileList.Default }
+
+      $count = 1
+      $prefix = 'HKU\AME_UserHive_'
+      foreach ($hive in (Get-ChildItem -Path $usersPath -Force -Depth 1 | ? { ($_.Name -eq 'NTUSER.DAT') -and ($_.Directory.Name -notlike 'defaultuser*')})) {
+          if (!$defaultFound -and ($hive.Directory.FullName -eq $defaultPath)) {
+              $defaultFound = $true
+              $name = """$prefix""" + """Default"""
+          } else {
+              $name = """$prefix""" + """$count"""
+          }
+
+          Write-Output """`nMounting $($hive.Directory.Name):"""
+          reg load """$name""" """$($hive.FullName)"""
+      }
+    weight: 10
+    wait: true
+
+  - !writeStatus: {status: 'Copying files'}
+  - !powerShell:
+    command: |
+      $windir = [Environment]::GetFolderPath('Windows')
+      @(
+          'AtmosphereModules',
+          'AtmosphereDesktop'
+      ) | ForEach-Object {
+          if (!(Test-Path $_)) { exit 1 }
+          Copy-Item -Path $_ -Destination $windir -Force -Recurse
+          if (!$?) { exit 2 }
+      }
+
+      Copy-Item -Path 'Themes\*' -Destination """$windir\Resources\Themes""" -Force -Recurse
+    weight: 10
+    wait: true
+    exeDir: true
+    handleExitCodes: {'!0': halt}
+
+    # Prevent annoying notifications during deployment
+  - !cmd:
+    command: 'DISABLENOTIFS.cmd'
+    exeDir: true
+    wait: true
+    runas: currentUserElevated
+  - !taskKill: {name: 'explorer'}
+  - !taskKill: {name: 'ShellExperienceHost'}
+  - !run: {exe: 'explorer.exe', runas: 'currentUser', wait: false}
+
+  # Configure PowerShell first so that other PowerShell scripts work
+  # NGEN - .NET assemblies PowerShell optimization
+  - !writeStatus: {status: 'Optimizing PowerShell'}
+  - !task: {path: 'Tasks\Registry\scripts\script-ngen.yml'}
+  - !task: {path: 'Tasks\Registry\qol\config-powershell.yml'}
+
+  # Disk Cleanup is run first so it can run in the background
+  - !writeStatus: {status: 'Cleaning up'}
+  - !powerShell:
+    command: '.\CLEANUP.ps1'
+    exeDir: true
+    wait: true
+    runas: currentUserElevated
+
+  # Set hidden Settings pages
+  # Done before everything else as scripts will overwrite it
+  - !task: {path: 'Tasks\Registry\qol\set-hidden-settings-pages.yml'}
+
+  # Main tasks
+#  - !task: {path: 'Main\start.yml'} too lazy to fix already implemented another solution
+#  - !task: {path: 'Main\services.yml'}
+#  - !task: {path: 'Main\components.yml'}
+#  - !task: {path: 'Main\appx.yml'}
+  - !task: {path: 'main.yml'}

@@ -1,0 +1,25 @@
+---
+title: Packages
+description: Removes system packages
+privilege: TrustedInstaller
+actions:
+  - !writeStatus: {status: 'Removing system packages'}
+  - !systemPackage: {name: 'Microsoft-Windows-FamilySafety-RefreshTask', arch: amd64, language: 'neutral'}
+  - !systemPackage: {name: 'Microsoft-Windows-ParentalControlsRatingSystem-GameRatingsSystems', arch: amd64, language: 'neutral'}
+  - !systemPackage: {name: 'Microsoft-Windows-ParentalControls.AppxMain', arch: amd64, language: 'neutral'}
+  - !systemPackage: {name: 'Microsoft-Windows-ParentalControls-MonitorService-Desktop', arch: amd64, language: 'neutral'}
+  - !systemPackage: {name: 'Microsoft-Windows-ParentalControls-WebFilter', arch: amd64, language: 'neutral'}
+  - !systemPackage: {name: 'Microsoft-Windows-ParentalControls.AppxSetup', arch: amd64, language: 'neutral'}
+  - !systemPackage: {name: 'Microsoft-Windows-ParentalControls-Settings-Desktop', arch: amd64, language: 'neutral'}
+  - !systemPackage: {name: 'Microsoft-Windows-ParentalControlsMonitor', arch: amd64, language: 'neutral'}
+  - !systemPackage: {name: 'Microsoft-Windows-ParentalControlsRatingSystem-WEB', arch: amd64, language: 'neutral'}
+  - !systemPackage: {name: 'Microsoft-Windows-ParentalControlsSettings', arch: amd64, language: 'neutral'}
+  - !systemPackage: {name: 'Microsoft-Windows-ParentalControls-Settings-Core', arch: amd64, language: 'neutral'}
+  - !systemPackage: {name: 'Microsoft-Windows-ParentalControls-WpcProxyStubs', arch: amd64, language: 'neutral'}
+  - !systemPackage: {name: 'Microsoft-Windows-ParentalControls-OTS', arch: amd64, language: 'neutral'}
+  - !systemPackage: {name: 'UserExperience-AIX', arch: amd64, language: 'neutral'}
+  - !systemPackage: {name: 'Microsoft-Windows-AppModel-FamilySafety-Extension', arch: wow64, language: 'neutral'}
+  - !systemPackage: {name: 'Microsoft-Windows-ParentalControlsRatingSystem-GameRatingsSystems', arch: wow64, language: 'neutral'}
+  - !systemPackage: {name: 'Microsoft-Windows-ParentalControls-WebFilter', arch: wow64, language: 'neutral'}
+  - !systemPackage: {name: 'Microsoft-Windows-ParentalControlsRatingSystem-WEB', arch: wow64, language: 'neutral'}
+  - !systemPackage: {name: 'Microsoft-Windows-ParentalControlsSettings', arch: wow64, language: 'neutral'}

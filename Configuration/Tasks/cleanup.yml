@@ -20,12 +20,17 @@ actions:
  - !file: {path: '%ProgramFiles%\WindowsApps\Microsoft.MicrosoftEdge*', option: 'remove-edge'}
    # Ink cleanup
  - !file: {path: '%ProgramFiles%\WindowsApps\Microsoft.Ink*'}
+ - !file: {path: '%ProgramFiles%\Common Files\microsoft shared\ink\TabTip.exe'} # Required for Win10
    # Scheduled tasks
- - !scheduledTask {path: "\\Microsoft\\Windows\\Customer Experience Improvement Program\\Consolidator", operation: delete}
- - !scheduledTask {path: "\\Microsoft\\Windows\\Customer Experience Improvement Program\\KernelCeipTask", operation: delete}
- - !scheduledTask {path: "\\Microsoft\\Windows\\Customer Experience Improvement Program\\UsbCeip", operation: delete}
- - !scheduledTask {path: "\\Microsoft\\Windows\\Application Experience\\ProgramDataUpdater", operation: delete}
- - !scheduledTask {path: "\\Microsoft\\Windows\\Application Experience\\StartupAppTask", operation: delete}
- - !scheduledTask {path: "\\Microsoft\\Windows\\HelloFace\\FODCleanupTask", operation: delete}
- - !scheduledTask {path: "\\Microsoft\\Windows\\Maps\\MapsToastTask", operation: delete}
- - !scheduledTask {path: "\\Microsoft\\Windows\\Maps\\MapsUpdateTask", operation: delete}
+ - !scheduledTask: {path: "\\Microsoft\\Windows\\Customer Experience Improvement Program\\Consolidator", operation: delete}
+ - !scheduledTask: {path: "\\Microsoft\\Windows\\Customer Experience Improvement Program\\KernelCeipTask", operation: delete}
+ - !scheduledTask: {path: "\\Microsoft\\Windows\\Customer Experience Improvement Program\\UsbCeip", operation: delete}
+ - !scheduledTask: {path: "\\Microsoft\\Windows\\Application Experience\\ProgramDataUpdater", operation: delete}
+ - !scheduledTask: {path: "\\Microsoft\\Windows\\Application Experience\\StartupAppTask", operation: delete}
+ - !scheduledTask: {path: "\\Microsoft\\Windows\\HelloFace\\FODCleanupTask", operation: delete}
+ - !scheduledTask: {path: "\\Microsoft\\Windows\\Maps\\MapsToastTask", operation: delete}
+ - !scheduledTask: {path: "\\Microsoft\\Windows\\Maps\\MapsUpdateTask", operation: delete}
+ - !scheduledTask: {path: "\\OneDrive*", operation: delete}
+   # Windows Mail
+ - !file: {path: '%programfiles%\Windows Mail'}
+ - !file: {path: '%programfiles(x86)%\Windows Mail'}

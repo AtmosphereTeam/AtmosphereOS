@@ -382,5 +382,5 @@ actions:
   - !task: {path: 'Tasks\Registry\scripts\script-power.yml'} # Done last on purpose
   - !task: {path: 'Tasks\Registry\misc\enable-notifications.yml'}
   - !task: {path: 'Tasks\Registry\misc\config-oem-information.yml'}
-  - !task: {path: 'Tasks\Registry\misc\disable-resume.yml'}
+  - !task: {path: 'Tasks\Registry\misc\disable-resume.yml', builds: [ '>19045' ]}
   - !task: {path: 'Tasks\readme.yml'}

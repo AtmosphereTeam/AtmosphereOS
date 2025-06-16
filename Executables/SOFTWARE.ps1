@@ -103,39 +103,21 @@ if ($OperaGX) {
 
 # Open-Shell
 if ($OpenShell) {
+	$windir = [Environment]::GetFolderPath('Windows')
 	Write-Output "Downloading Open-Shell..."
 	& curl.exe -LSs "https://github.com/Open-Shell/Open-Shell-Menu/releases/download/v4.4.196/OpenShellSetup_4_4_196.exe" -o "$tempDir\OpenShellSetup.exe" $timeouts
 	Write-Output "Installing Open-Shell..."
 	Start-Process -FilePath "$tempDir\OpenShellSetup.exe" -WindowStyle Hidden -ArgumentList '/qn /quiet ADDLOCAL=StartMenu' -Wait
 	Write-Output "Open-Shell installed successfully."
 	Remove-TempDirectory
+	Write-Output "Configuring Open-Shell"
+	Start-Process -FilePath "$windir\AtmosphereModules\Scripts\SLNT.bat" -WindowStyle Hidden -Wait
+	Write-Output "Open-Shell Configured successfully."
 	exit
 }
 
 # Modify Windows Ui
 if ($ModifyUi) {
-	function Invoke-WingetInstallFallback {
-    param (
-        [Parameter(Mandatory = $true)][string]$PackageId,
-        [string]$DisplayName = $PackageId
-    )
-
-    Write-Warning "Falling back to winget for $DisplayName..."
-
-    try {
-        winget install --id=$PackageId -e --silent --accept-source-agreements --accept-package-agreements
-        if ($LASTEXITCODE -eq 0) {
-            Write-Output "$DisplayName installed successfully via winget."
-            return $true
-        } else {
-            Write-Error "winget failed to install $DisplayName (ExitCode: $LASTEXITCODE)."
-            return $false
-        }
-    } catch {
-        Write-Error "Exception while using winget to install ${DisplayName}: $_"
-        return $false
-    }
-}
 # Nilesoft Shell https://github.com/moudey/Shell
 # broken by microsft (i think)
 #    Write-Output "Downloading Nilesoft Shell..."
@@ -166,11 +148,19 @@ if ($ModifyUi) {
 #    }
 
 # AccentColorizer11 + AccentColorizer https://github.com/krlvm/AccentColorizer + https://github.com/krlvm/AccentColorizer-E11
-    $scriptDir = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
-    $taskXmlFilePath = Join-Path $scriptDir "AccentColorizer.xml"
+	$scriptDir = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
 
+	# Check if Win11 to install AccentColorizer-E11 
+	$build = (Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").CurrentBuild
+
+	if ($build -ge 22000) {
+    	$taskXmlFilePath = Join-Path $scriptDir "AccentColorizer11.xml"
+	} else {
+		$taskXmlFilePath = Join-Path $scriptDir "AccentColorizer.xml"
+	}
+	
     if (-not (Test-Path $taskXmlFilePath)) {
-        Write-Error "AccentColorizer.xml not found at '$taskXmlFilePath'. Skipping scheduled task registration."
+        Write-Error "AccentColorizer xml not found at '$taskXmlFilePath'. Skipping scheduled task registration."
         Remove-TempDirectory 
         Write-Output "Continuing now with ExplorerBlurMica installation"
 		return
@@ -226,6 +216,7 @@ if ($ModifyUi) {
 	$p = Start-Process -FilePath "C:\Windows\AtmosphereModules\Tools\TranslucentFlyouts\launch_win32.cmd" -PassThru
 	$p.WaitForExit()
 	Write-Output "TranslucentFlyouts installed..."
+	exit
 }
 
 #####################
@@ -235,16 +226,25 @@ if ($ModifyUi) {
 # MS Store App Fetcher 
 # https://github.com/Ameliorated-LLC/appfetch
 # Experimental and has known compatibility issues with some apps.
-Write-Output "Downloading MS Store App Fetcher..."
-$githubApi = Invoke-RestMethod "https://api.github.com/repos/Ameliorated-LLC/appfetch/releases/latest" -EA 0
-$exeUrl = $githubApi.assets.browser_download_url | Where-Object { $_ -like "*.exe" } | Select-Object -First 1
-$exePath = Join-Path $tempDir "App Fetch.exe"
-& curl.exe -L $exeUrl -o $exePath
-Move-Item -Path "$exePath" -Destination "$DesktopPath\App Fetch.exe" -Force
-Write-Output "MS Store App Fetcher downloaded to your Desktop."
-Remove-TempDirectory
+$build = (Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").CurrentBuild
 
-Start-Sleep -Seconds 1 # please dont touch this, it will break vcredists curl for some reason
+if ($build -ge 22000) {
+    Write-Output "Downloading MS Store App Fetcher..."
+	$githubApi = Invoke-RestMethod "https://api.github.com/repos/Ameliorated-LLC/appfetch/releases/latest" -EA 0
+	$exeUrl = $githubApi.assets.browser_download_url | Where-Object { $_ -like "*.exe" } | Select-Object -First 1
+	$exePath = Join-Path $tempDir "App Fetch.exe"
+	& curl.exe -L $exeUrl -o $exePath
+	Move-Item -Path "$exePath" -Destination "$DesktopPath\App Fetch.exe" -Force
+	Write-Output "MS Store App Fetcher downloaded to your Desktop."
+	Remove-TempDirectory
+
+	Start-Sleep -Seconds 1 # please dont touch this, it will break vcredists curl for some reason
+} else {
+	Write-Output "MS Store App Fetcher UI gets broken in Windows 10"
+	Remove-TempDirectory
+	return
+}
+
 
 # Visual C++ Runtimes (referred to as vcredists for short)
 # https://learn.microsoft.com/en-US/cpp/windows/latest-supported-vc-redist

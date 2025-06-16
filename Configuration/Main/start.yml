@@ -27,6 +27,11 @@ actions:
 
       $modulesPath = """$([Environment]::GetFolderPath('Windows'))\AtmosphereModules"""
       Add-ToPath """$modulesPath""", """$modulesPath\Tools""", """$modulesPath\Scripts"""
+  - !powerShell:
+    command: '.\Default.ps1'
+    exeDir: true
+    wait: true
+    runas: currentUserElevated
 
   ################ NO LOCAL BUILD ################
 
@@ -108,13 +113,6 @@ actions:
   - !writeStatus: {status: 'Modifying the Start Menu', option: 'openshell'}
   - !powerShell:
     command: '.\SOFTWARE.ps1 -OpenShell'
-    exeDir: true
-    wait: true
-    weight: 120
-    option: 'openshell'
-    runas: currentUserElevated
-  - !run:
-    exe: 'SLNT.cmd'
     exeDir: true
     wait: true
     weight: 120

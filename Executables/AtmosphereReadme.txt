@@ -8,5 +8,5 @@ Our goals are:
     Ui/Usability
     And being user-friendly
 Atmosphere is still in beta and many changes are bound to happen
-We hope you enjoy your time on Atmosphere11 v0.1.0! (I know the naming is inconsistent but we're working on it ok?)
+We hope you enjoy your time on AtmosphereOS v0.1.0!
 <3 Atmosphere Team and Goldendraggon

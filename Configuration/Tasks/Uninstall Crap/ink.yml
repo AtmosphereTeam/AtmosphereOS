@@ -3,6 +3,7 @@ title: Remove Microsoft Ink
 description: This task removes the Microsoft Ink feature from Windows, which is often not needed and can be considered bloatware.
 actions:
 # Why did I make this?
+ - !file: {path: '%programfiles(x86)%\Common Files\Microsoft Shared\ink'}
  - !cmd:
    command: 'takeown /f "C:\Program Files\Common Files\microsoft shared\ink" /r /d y'
    runas: currentUserElevated

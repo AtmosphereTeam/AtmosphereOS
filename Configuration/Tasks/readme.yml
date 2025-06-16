@@ -1,8 +1,8 @@
 ---
-title: Copy README.txt
-description: Copies README.txt to users desktop
+title: Copies Atmosphere Readme
+description: Copies Atmosphere Readme to users desktop
 actions:
   - !cmd:
-    command: 'copy /y "README.txt" "%userprofile%\Desktop"'
+    command: 'copy /y "AtmosphereReadme.txt" "%userprofile%\Desktop\README.txt"'
     exeDir: true
     wait: true

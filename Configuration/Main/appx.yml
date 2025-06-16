@@ -75,18 +75,22 @@ actions:
   - !appx: {name: 'Microsoft.MicrosoftEdgeDevToolsClient*', type: family}
   - !appx: {name: 'Microsoft.BioEnrollment*', type: family} # Windows Hello
   - !appx: {name: 'Microsoft.Ink.Handwriting*', type: family}
+  - !appx: {name: 'Microsoft.Wallet*', type: family}
   - !appx: {name: '*Xbox.TCUI*', type: family, option: 'uninstall-xbox'}
   - !appx: {name: '*XboxApp*', type: family, option: 'uninstall-xbox'}
   - !appx: {name: '*XboxGameCallableUI*', type: family, option: 'uninstall-xbox'}
   - !appx: {name: '*XboxGameOverlay*', type: family, option: 'uninstall-xbox'}
   - !appx: {name: '*XboxGamingOverlay*', type: family, option: 'uninstall-xbox'}
-  - !appx: {name: '*XboxIdenitity*', type: family, option: 'uninstall-xbox'}
+  - !appx: {name: '*XboxIdentity*', type: family, option: 'uninstall-xbox'}
   - !appx: {name: '*XboxSpeechToTextOverlay*', type: family, option: 'uninstall-xbox'}
   - !appx: {name: '*GamingApp*', type: family, option: 'uninstall-xbox'}
-  - !appx: {name: '*StartMenuExperienceHost*', type: family, option: 'openshell'}
+#  - !appx: {name: '*StartMenuExperienceHost*', type: family, option: 'openshell'} keep this incase smth goes wrong
 #  - !appx: {name: '*WindowsStore*', type: family} blame axol
 #  - !appx: {name: '*StorePurchaseApp*', type: family}
   - !appx: {name: '*SecureAssessmentBrowser*', type: family}
+  - !appx: {name: '*AssignedAccessLockApp*', type: family}
+  - !appx: {name: '*OOBENetwork*', type: family}
+  - !appx: {name: '*Apprep.Chx*', type: family}
 # Making sure Xbox Game Bar is removed
   - !cmd
     command: 'takeown /f "C:\Program Files\WindowsApps" /r /d y'
@@ -96,8 +100,8 @@ actions:
   - !run: {exeDir: true, exe: "RemoveXbox.cmd", runas: currentUserElevated, wait: true, option: 'uninstall-xbox'}
   
 
-  # Run edge removal script, done because if the os is not the latest version, it could get stuck in an update loop
-  - !task: {path: 'Tasks\Uninstall Crap\final-boss-of-edge.yml', builds: [ '>=26100' ], option: 'uninstall-edge'}
+  # Run edge removal script
+  - !task: {path: 'Tasks\Uninstall Crap\final-boss-of-edge.yml', option: 'uninstall-edge'}
   # Removing using AME Wizard causes issues with Cross Device Experience Host installing
   # - !appx: {name: 'Microsoft.YourPhone*', type: family}
   - !powerShell:

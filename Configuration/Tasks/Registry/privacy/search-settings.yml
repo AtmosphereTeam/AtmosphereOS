@@ -8,6 +8,7 @@ actions:
     value: 'BingSearchEnabled'
     data: '0'
     type: REG_DWORD
+    scope: allUsers
   - !registryValue:
     path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\SearchSettings'
     value: 'IsAADCloudSearchEnabled'

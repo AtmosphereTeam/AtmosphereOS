@@ -1,9 +1,9 @@
 [Theme]
-DisplayName=Atmosphere v0.4.x Dark
+DisplayName=Atmosphere Dark
 ThemeId={FB5C68CD-E525-4324-9830-18BFE1746747}
 
 [Control Panel\Desktop]
-Wallpaper=%windir%\AtmosphereModules\Wallpapers\atmosphere-v0.4.x-dark.png
+Wallpaper=%windir%\AtmosphereModules\Wallpapers\atmosphere.png
 Pattern=
 MultimonBackgrounds=0
 PicturePosition=4

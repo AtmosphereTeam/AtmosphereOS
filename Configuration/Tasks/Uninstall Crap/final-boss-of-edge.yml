@@ -86,6 +86,8 @@ actions:
   - !file: {path: "%ProgramFiles(x86)%\\Microsoft\\EdgeUpdate", weight: 10}
   - !file: {path: "%ProgramFiles(x86)%\\Microsoft\\EdgeCore", weight: 10}
 
+  - !appx: {name: 'Microsoft.Edge*', type: family}
+
   - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\EdgeWebView'}
   - !file: {path: "%ProgramFiles(x86)%\\Microsoft\\EdgeWebView", weight: 10}
 

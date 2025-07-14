@@ -58,8 +58,8 @@ actions:
   # Configure PowerShell first so that other PowerShell scripts work
   # NGEN - .NET assemblies PowerShell optimization
   - !writeStatus: {status: 'Optimizing PowerShell'}
-  - !task: {path: 'Tasks\Registry\scripts\script-ngen.yml'}
-  - !task: {path: 'Tasks\Registry\qol\config-powershell.yml'}
+  - !task: {path: 'Tasks\scripts\script-ngen.yml'}
+  - !task: {path: 'Tasks\qol\config-powershell.yml'}
 
   # Disk Cleanup is run first so it can run in the background
   - !writeStatus: {status: 'Cleaning up'}
@@ -71,7 +71,7 @@ actions:
 
   # Set hidden Settings pages
   # Done before everything else as scripts will overwrite it
-  - !task: {path: 'Tasks\Registry\qol\set-hidden-settings-pages.yml'}
+  - !task: {path: 'Tasks\qol\set-hidden-settings-pages.yml'}
 
   # Main tasks
 #  - !task: {path: 'Main\start.yml'} too lazy to fix already implemented another solution

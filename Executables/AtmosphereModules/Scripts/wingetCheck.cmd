@@ -40,7 +40,7 @@ winget search "Microsoft Visual Studio Code" --accept-source-agreements > nul 2>
 if not defined silent (
     if not defined nodashes (
         echo %dashes%
-        echo]
+        echo.
     )
 )
 
@@ -50,7 +50,7 @@ exit /b
 cls
 echo You need the latest version of WinGet to use this script.
 echo WinGet is included with 'App Installer' on the Microsoft Store, it's also on GitHub.
-echo]
+echo.
 choice /c:yn /n /m "Would you like to open the Microsoft Store to %action% it? [Y/N] "
 if errorlevel == 1 start %uri%
 exit /b 2

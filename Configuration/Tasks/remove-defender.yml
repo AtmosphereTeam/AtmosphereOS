@@ -1,12 +1,15 @@
 ---
-title: Windows Defender
-description: Removes Windows Defender and disables its services
+title: Remove Defender
+description: Removes Windows Defender
 privilege: TrustedInstaller
-actions:
-    # New Solution SoonTM
-    
+action:
     # ---------- Windows Defender
   - !writeStatus: {status: 'Removing Windows Defender'}
+  - !powerShell:
+      command: '.\RemoveSecHealthApp.ps1'
+      exeDir: true
+      runas: TrustedInstaller
+      wait: true
   - !taskKill: {name: "NisSrv"}
   - !taskKill: {name: "SecurityHealthHost"}
   - !taskKill: {name: "SecurityHealthService"}
@@ -44,3 +47,14 @@ actions:
   - !scheduledTask:
     path: "\\Microsoft\\Windows\\Windows Defender\\Windows Defender Verification"
     operation: delete
+    # ---------- PC Health Check
+  - !writeStatus: {status: 'Removing PC Health Check'}
+
+  - !file:
+    path: "%ProgramW6432%\\PCHealthCheck"
+    # ---------- SFC Mitigation
+  - !writeStatus: {status: 'Implementing SFC mitigation'}
+  - !run:
+    exeDir: true
+    exe: "SFCDEPLOY.bat"
+    weight: 5

@@ -1,0 +1,30 @@
+---
+title: Disable Adobe telemetry
+description: Improves Adobe Security
+actions:
+  - !registryKey: {path: 'HKCU\SOFTWARE\Adobe', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\DC', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\DC\JSPrefs', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\DC\JSPrefs', value: 'bEnableJS', type: REG_DWORD, data: '0'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\DC\Originals', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\DC\Originals', value: 'bAllowOpenFile', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\DC\Originals', value: 'bSecureOpenFile', type: REG_DWORD, data: '1'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\DC\Privileged', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\DC\Privileged', value: 'bProtectedMode', type: REG_DWORD, data: '1'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\DC\TrustManager', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\DC\TrustManager', value: 'iProtectedView', type: REG_DWORD, data: '1'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\DC\TrustManager', value: 'bEnhancedSecurityInBrowser', type: REG_DWORD, data: '1'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\DC\TrustManager', value: 'bEnhancedSecurityStandalone', type: REG_DWORD, data: '1'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\XI', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\XI\JSPrefs', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\XI\JSPrefs', value: 'bEnableJS', type: REG_DWORD, data: '0'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\XI\Originals', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\XI\Originals', value: 'bAllowOpenFile', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\XI\Originals', value: 'bSecureOpenFile', type: REG_DWORD, data: '1'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\XI\Privileged', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\XI\Privileged', value: 'bProtectedMode', type: REG_DWORD, data: '1'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\XI\TrustManager', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\XI\TrustManager', value: 'iProtectedView', type: REG_DWORD, data: '1'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\XI\TrustManager', value: 'bEnhancedSecurityInBrowser', type: REG_DWORD, data: '1'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\XI\TrustManager', value: 'bEnhancedSecurityStandalone', type: REG_DWORD, data: '1'}

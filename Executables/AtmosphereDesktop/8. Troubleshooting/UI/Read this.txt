@@ -1,0 +1,1 @@
+If you're experiencing explorer crashes or games not launching and anti-cheat problems then try disabling translucent flyouts.

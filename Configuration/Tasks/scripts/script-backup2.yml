@@ -3,7 +3,7 @@ title: Backup Atmosphere Services and Drivers
 description: Backs up default Atmosphere services and drivers, after all the tweaks are finished
 actions:
   - !powerShell:
-    command: >-
+    command: |
       .\BACKUP.ps1 -FilePath """$([Environment]::GetFolderPath('Windows'))\AtmosphereModules\Other\AtmosphereServices.reg"""
     wait: true
     exeDir: true

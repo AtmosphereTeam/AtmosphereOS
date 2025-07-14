@@ -1,0 +1,105 @@
+---
+title: Disable Office Telemetry
+description: Disables Microsoft Office telemetry for privacy
+actions:
+  - !registryValue:
+    path: 'HKCU\Software\Policies\Microsoft\office\16.0\common'
+    value: 'sendcustomerdata'
+    data: '0'
+    type: REG_DWORD
+  - !registryValue:
+    path: 'HKCU\Software\Policies\Microsoft\office\common\clienttelemetry'
+    value: 'sendtelemetry'
+    data: '3'
+    type: REG_DWORD
+    # Customer Experience Program
+  - !registryValue:
+    path: 'HKCU\Software\Policies\Microsoft\office\16.0\common'
+    value: 'qmenable'
+    data: '0'
+    type: REG_DWORD
+    # Office Security Improvements
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\Excel', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\Excel\Security', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\Excel\Security', value: 'PackagerPrompt', type: REG_DWORD, data: '2'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\Excel\Security', value: 'VBAWarnings', type: REG_DWORD, data: '4'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\Excel\Security', value: 'WorkbookLinkWarnings', type: REG_DWORD, data: '2'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\PowerPoint', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\PowerPoint\Security', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\PowerPoint\Security', value: 'PackagerPrompt', type: REG_DWORD, data: '2'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\PowerPoint\Security', value: 'VBAWarnings', type: REG_DWORD, data: '4'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\Word', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\Word\Options', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\Word\Options\vpref', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\Word\Options\vpref', value: 'fNoCalclinksOnopen_90_1', type: REG_DWORD, data: '1'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\Word\Security', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\Word\Security', value: 'PackagerPrompt', type: REG_DWORD, data: '2'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\Word\Security', value: 'VBAWarnings', type: REG_DWORD, data: '4'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Excel', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Excel\Options', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Excel\Options', value: 'DontUpdateLinks', type: REG_DWORD, data: '1'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Excel\Security', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Excel\Security', value: 'PackagerPrompt', type: REG_DWORD, data: '2'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Excel\Security', value: 'VBAWarnings', type: REG_DWORD, data: '4'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Excel\Security', value: 'WorkbookLinkWarnings', type: REG_DWORD, data: '2'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\PowerPoint', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\PowerPoint\Security', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\PowerPoint\Security', value: 'PackagerPrompt', type: REG_DWORD, data: '2'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\PowerPoint\Security', value: 'VBAWarnings', type: REG_DWORD, data: '4'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Word', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Word\Options', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Word\Options', value: 'DontUpdateLinks', type: REG_DWORD, data: '1'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Word\Options\WordMail', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Word\Options\WordMail', value: 'DontUpdateLinks', type: REG_DWORD, data: '1'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Word\Security', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Word\Security', value: 'PackagerPrompt', type: REG_DWORD, data: '2'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Word\Security', value: 'VBAWarnings', type: REG_DWORD, data: '4'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Word\Security', value: 'AllowDDE', type: REG_DWORD, data: '0'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Excel', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Excel\Options', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Excel\Options', value: 'DontUpdateLinks', type: REG_DWORD, data: '1'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Excel\Security', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Excel\Security', value: 'PackagerPrompt', type: REG_DWORD, data: '2'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Excel\Security', value: 'VBAWarnings', type: REG_DWORD, data: '4'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Excel\Security', value: 'WorkbookLinkWarnings', type: REG_DWORD, data: '2'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\PowerPoint', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\PowerPoint\Security', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\PowerPoint\Security', value: 'PackagerPrompt', type: REG_DWORD, data: '2'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\PowerPoint\Security', value: 'VBAWarnings', type: REG_DWORD, data: '4'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Word', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Word\Options', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Word\Options', value: 'DontUpdateLinks', type: REG_DWORD, data: '1'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Word\Options\WordMail', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Word\Options\WordMail', value: 'DontUpdateLinks', type: REG_DWORD, data: '1'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Word\Security', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Word\Security', value: 'PackagerPrompt', type: REG_DWORD, data: '2'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Word\Security', value: 'VBAWarnings', type: REG_DWORD, data: '4'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Word\Security', value: 'AllowDDE', type: REG_DWORD, data: '0'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Excel', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Excel\Options', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Excel\Options', value: 'DontUpdateLinks', type: REG_DWORD, data: '1'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Excel\Security', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Excel\Security', value: 'PackagerPrompt', type: REG_DWORD, data: '2'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Excel\Security', value: 'VBAWarnings', type: REG_DWORD, data: '4'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Excel\Security', value: 'WorkbookLinkWarnings', type: REG_DWORD, data: '2'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\PowerPoint', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\PowerPoint\Security', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\PowerPoint\Security', value: 'PackagerPrompt', type: REG_DWORD, data: '2'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\PowerPoint\Security', value: 'VBAWarnings', type: REG_DWORD, data: '4'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Word', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Word\Options', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Word\Options', value: 'DontUpdateLinks', type: REG_DWORD, data: '1'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Word\Options\WordMail', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Word\Options\WordMail', value: 'DontUpdateLinks', type: REG_DWORD, data: '1'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Word\Security', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Word\Security', value: 'PackagerPrompt', type: REG_DWORD, data: '2'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Word\Security', value: 'VBAWarnings', type: REG_DWORD, data: '4'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Word\Security', value: 'AllowDDE', type: REG_DWORD, data: '0'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\Common', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\Common\Security', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\Common\Security', value: 'DisableAllActiveX', type: REG_DWORD, data: '1'}

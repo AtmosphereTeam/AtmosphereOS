@@ -1,0 +1,40 @@
+---
+title: Configuration
+description: Configure Windows things
+privilege: TrustedInstaller
+actions:
+    # Sync time and set to more reliable time servers
+  - !service: {name: "w32time", operation: start, ignoreErrors: true}
+  - !run: {exe: 'w32tm', args: '/config /manualpeerlist:pool.ntp.org /syncfromflags:manual /update'}
+  - !run: {exe: 'w32tm', args: '/resync'}
+
+  - !writeStatus: {status: 'Cleaning user interface'}
+  - !service:
+    name: "WpnService"
+    operation: stop
+    ignoreErrors: true
+  - !service:
+    name: "WpnUserService*"
+    operation: stop
+    ignoreErrors: true
+
+  - !taskKill: {name: "explorer"}
+
+  - !run:
+    exeDir: true
+    exe: "CLEANUP.bat"
+    weight: 30
+    
+  - !run: {exe: "explorer.exe", wait: false, runas: currentUser}
+
+  - !writeStatus: {status: 'Implementing SFC mitigation'}
+  - !run:
+    exeDir: true
+    exe: "SFCDEPLOY.bat"
+    weight: 5
+
+  - !writeStatus: {status: 'Modifying login screen'}
+  - !run:
+    exeDir: true
+    exe: "LOGIN.bat"
+    wait: false

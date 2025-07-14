@@ -17,6 +17,6 @@ foreach ($userTemplate in @($Default, $defaultuser0)) {
             -Source "cmd.exe" `
             -Destination "$startup\AtmosphereUser.lnk" `
             -Arguments "/c powershell.exe -NoProfile -ExecutionPolicy Bypass -File `"$scriptPath`""
-        New-Shortcut -Source "$windir\AtmosphereDesktop" -Destination "$userTemplate\Desktop" -Icon "$windir\AtmosphereModules\Other\atmosphere-folder.ico,0"
+        New-Shortcut -Source "$windir\AtmosphereDesktop" -Destination "$userTemplate\Desktop\Atmosphere.lnk" -Icon "$windir\AtmosphereModules\Other\atmosphere-folder.ico,0"
     }
 }

@@ -21,25 +21,21 @@ actions:
     
     # OneDrive
     # The actual OneDrive setup in Windows is stripped at a component-level in the miscellaneous package
-  - !task: {path: 'Tasks\Uninstall Crap\onedrive.yml', option: 'uninstall-oned'}
+  - !task: {path: 'Tasks\uninstall\onedrive.yml', option: 'uninstall-oned'}
 
     # Windows components and Telemetry
   - !writeStatus: {status: 'Removing components'}
   - !powerShell:
     command: >-
       & """$([Environment]::GetFolderPath('Windows'))\AtmosphereModules\Scripts\packageInstall.ps1"""
-      -InstallPackages @('*Z-Atmosphere-NoDefender-Package*',
-        '*Z-Atmosphere-NoTelemetry-Package*'
-      )
+      -InstallPackages @('*Z-Atmosphere-NoTelemetry-Package*')
       -NoInteraction
-    option: 'defender-disable'
     wait: true
     exeDir: true
   - !powerShell:
     command: >-
       & """$([Environment]::GetFolderPath('Windows'))\AtmosphereModules\Scripts\packageInstall.ps1"""
-      -InstallPackages @('*Z-Atmosphere-NoTelemetry-Package*')
-      -UninstallPackages @('*Z-Atmosphere-NoDefender-Package*')
+      -UninstallPackages @('*Z-AME-NoDefender-Package*')
       -NoInteraction
     option: 'defender-enable'
     wait: true

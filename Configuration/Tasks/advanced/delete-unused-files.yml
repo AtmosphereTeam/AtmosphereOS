@@ -1,0 +1,20 @@
+---
+title: Delete unused files
+description: Deletes option specific files
+actions:
+  - !file {path: '%windir%\AtmosphereDesktop\2. Drivers\Drivers from Windows Update'}
+  - !file {path: '%windir%\AtmosphereDesktop\3. General Configuration\AI Features'}
+  - !file {path: '%windir%\AtmosphereDesktop\3. General Configuration\Automatic Updates'}
+  - !file {path: '%windir%\AtmosphereDesktop\3. General Configuration\Delivery Optimizations'}
+  - !file {path: '%windir%\AtmosphereDesktop\3. General Configuration\Mobile Devices (Phone Link)'}
+  - !file {path: '%windir%\AtmosphereDesktop\3. General Configuration\Store App Archiving'}
+  - !file {path: '%windir%\AtmosphereDesktop\3. General Configuration\Update Notifications'}
+  - !file {path: '%windir%\AtmosphereDesktop\3. General Configuration\Web Search (includes Search Highlights)'}
+  - !file {path: '%windir%\AtmosphereDesktop\3. General Configuration\Widgets (News and Interests)'}
+  - !file {path: '%windir%\AtmosphereDesktop\3. General Configuration\Windows Spotlight'}
+  - !file {path: '%windir%\AtmosphereDesktop\5. Windows Settings\Language.url'}
+  - !file {path: '%windir%\AtmosphereDesktop\5. Windows Settings\Privacy.url'}
+  - !file {path: '%windir%\AtmosphereDesktop\7. Security\Defender'}
+  - !file {path: '%windir%\AtmosphereDesktop\8. Troubleshooting\Repair Windows Components.cmd'}
+  - !file {path: '%windir%\AtmosphereDesktop\8. Troubleshooting\Set services to defaults.cmd'}
+  - !file {path: '%windir%\AtmosphereDesktop\8. Troubleshooting\Telemetry Components.cmd'}

@@ -1,17 +1,14 @@
 .\AtmosphereModules\initPowerShell.ps1
 $windir = [Environment]::GetFolderPath('Windows')
-$startupdir = [Environment]::GetFolderPath('Startup')
 Write-Title "Creating Desktop & Start Menu shortcuts..."
 
 # 1. Make shortcut for primary user. Should even if the 2nd part fails.
 New-Shortcut -Source "$windir\AtmosphereDesktop" -Destination "$([Environment]::GetFolderPath('Desktop'))\Atmosphere.lnk" -Icon "$windir\AtmosphereModules\Other\atmosphere-folder.ico,0"
-New-Shortcut -Source "$windir\AtmosphereModules\Tools\TranslucentFlyouts\launch_win32.cmd" -Destination "$([Environment]::GetFolderPath('Startup'))\TranslucentFlyouts.lnk"
 New-Shortcut -Source "$windir\AtmosphereModules\Scripts\Taskkill_CDR.cmd" -Destination "$([Environment]::GetFolderPath('Startup'))\Taskkill_CDR.lnk"
 
 # 2. Iterate through user profiles in C:\Users to copy to their Desktops
 #    (Requires Administrator privileges)
 $defaultShortcut = "$(Get-UserPath)\Atmosphere.lnk"
-$startupShortcut = "$([Environment]::GetFolderPath('Startup'))\TranslucentFlyouts.lnk"
 $usersRoot = "C:\Users"
 $systemUserFolders = @("Public", "Default", "defaultuser0", "All Users", "System") # Folders to exclude
 
@@ -35,20 +32,6 @@ if (Test-Path $usersRoot -PathType Container) {
                 }
             } else {
                 Write-Warning "Desktop path '$userDesktopPath' not found for user '$username', skipping shortcut copy."
-            }
-
-            # Check if the Startup folder actually exists for this user profile
-            if (Test-Path $startupdir -PathType Container) {
-                Write-Output "Copying Startup shortcut for '$username' to '$startupdir'..."
-                try {
-                    Copy-Item $startupShortcut -Destination $startupdir -Force -ErrorAction Stop
-                    Write-Output "Successfully copied shortcut for '$username'." -ForegroundColor Green
-                }
-                catch {
-                    Write-Warning "Failed to copy shortcut to '$startupdir' for user '$username'. Error: $($_.Exception.Message)"
-                }
-            } else {
-                Write-Warning "Desktop path '$startupdir' not found for user '$username', skipping shortcut copy."
             }
         }
     }

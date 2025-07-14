@@ -1,0 +1,30 @@
+---
+title: Software
+description: Installs software
+privilege: TrustedInstaller
+actions:
+  - !run:
+    exeDir: true
+    exe: "ame-hexer.exe"
+    args: '"%WINDIR%\Resources\Themes\aero\Shell\NormalColor\shellstyle.dll" "3c69662069643d2261746f6d2848656c70427574746f6e29223e" "3c69662069643d2261746f6d282d2d2d52454d4f56454429223e" 120000'
+    weight: 60
+    wait: false
+  - !run:
+    exeDir: true
+    exe: "ame-hexer.exe"
+    args: '"%WINDIR%\Resources\Themes\aero\Shell\NormalColor\shellstyle.dll" "3c69662069643d2261746f6d2848656c70427574746f6e29223e" "3c69662069643d2261746f6d282d2d2d52454d4f56454429223e" 120000'
+    weight: 60
+    wait: false
+
+  - !run:
+    exeDir: true
+    exe: "SOFTSHRT.bat"
+    weight: 20
+    option: 'openshell'
+    
+    # Disable Lockscreen Overlay
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', value: 'RotatingLockScreenOverlayEnabled', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', value: 'SubscribedContent-338387Enabled', type: REG_DWORD, data: '0'}
+
+  - !registryValue: {path: 'HKCU\SOFTWARE\Policies\Microsoft\Windows\CloudContent', value: 'DisableSpotlightCollectionOnDesktop', type: REG_DWORD, data: '1'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Policies\Microsoft\Windows\CloudContent', value: 'DisableWindowsSpotlightFeatures', type: REG_DWORD, data: '1'}

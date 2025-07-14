@@ -22,6 +22,6 @@ To achieve this, Atmosphere will offer **highly customizable install options**, 
 - **UI modifications** – customize the start menu and shell (not everyone likes Fluent Metro)
 - **Software installation** – pick a browser and access recommended software links in the Atmosphere Desktop folder
 - **Windows components** – disable features like Windows Update, Defender, and more
-- **Advanced mode (soon™)** – full control: remove system components, Amelioration (to a degree), and other powerful tools<br>
+- **Advanced mode (preview)** – full control: remove system components, Amelioration (to a degree), and other powerful tools<br>
 
-*Advanced mode might be implemented in parts, not all at once. A tool similar to the Revision Tool is also being considered, but nothing is guaranteed.*
+*AtmosphereTool soon™*

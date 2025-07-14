@@ -1,0 +1,334 @@
+---
+title: Perform registry edits
+description: Performs registry edits
+privilege: TrustedInstaller
+actions:
+  - !registryValue: {path: 'HKLM\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\SQMLogger', value: 'Start', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKLM\SOFTWARE\Policies\Microsoft\Windows\EnhancedStorageDevices', value: 'TCGSecurityActivationDisabled', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKLM\SOFTWARE\Policies\Microsoft\Windows\OneDrive', value: 'DisableFileSyncNGSC', type: REG_DWORD, data: '1'}
+  - !registryValue: {path: 'HKLM\SOFTWARE\Policies\Microsoft\Windows\safer\codeidentifiers', value: 'authenticodeenabled', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting', value: 'value', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\PolicyManager\default\WiFi\AllowAutoConnectToWiFiSenseHotspots', value: 'value', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKLM\SOFTWARE\Policies\Microsoft\Windows NT\CurrentVersion\Software Protection Platform', value: 'NoGenTicket', type: REG_DWORD, data: '1'}
+  # Remove SecurityHealth from startup
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run', value: 'SecurityHealth', operation: delete}
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\StartupApproved\Run', value: 'SecurityHealth', operation: delete}
+
+    # Turns off Windows blocking installation of files downloaded from the internet
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Attachments', value: 'SaveZoneInformation', type: REG_DWORD, data: '1'}
+
+    # Disables SmartScreen
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer', value: 'SmartScreenEnabled', type: REG_SZ, data: 'Off'}
+
+    # Remove Metadata Tracking
+  - !registryKey: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Device Metadata', operation: add}
+
+    # New Control Panel cleanup - List of commands: https://winaero.com/ms-settings-commands-in-windows-10/
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'SettingsPageVisibility', type: REG_SZ, data: 'hide:windowsdefender;activation;backup;delivery-optimization;findmydevice;developers;launchsecuritykeyenrollment;recovery;troubleshoot;windowsinsider;windowsinsider-optin;windowsupdate;windowsupdate-activehours;windowsupdate-options;workplace-provisioning;workplace-repairtoken;provisioning;windowsanywhere;regionlanguage-adddisplaylanguage;regionlanguage-languageoptions;regionlanguage-setdisplaylanguage;speech;storagerecommendations;surfacehub-accounts;search;search-moredetails;search-permissions;mobile-devices;personalization-start-places;gaming-gamebar;gaming-gamedvr;gaming-gamemode;family-group;cortana-moredetails;cortana-permissions;cortana-windowssearch;cortana;cortana-language;cortana-talktocortana;controlcenter;maps;maps-downloadmaps;videoplayback;appsforwebsites;optionalfeatures;workplace;emailandaccounts;otherusers;assignedaccess;signinoptions;signinoptions-dynamiclock;sync;backup;signinoptions-launchfaceenrollment;signinoptions-launchfingerprintenrollment;yourinfo;privacy-accessoryapps;privacy-accountinfo;privacy-activityhistory;privacy-advertisingid;privacy-appdiagnostics;privacy-automaticfiledownloads;privacy-backgroundapps;privacy-backgroundspatialperception;privacy-calendar;privacy-callhistory;privacy-webcam;privacy-contacts;privacy-documents;privacy-downloadsfolder;privacy-email;privacy-eyetracker;privacy-feedback;privacy-broadfilesystemaccess;privacy-general;privacy-graphicscaptureprogrammatic;privacy-graphicscapturewithoutborder;privacy-speechtyping;privacy-location;privacy-messaging;privacy-microphone;privacy-motion;privacy-musiclibrary;privacy-notifications;privacy-customdevices;privacy-phonecalls;privacy-pictures;privacy-radios;privacy-speech;privacy-tasks;privacy-videos;privacy-voiceactivation;account;crossdevice;project;camera;deviceusage;home;quiethours'}
+    # Clean up the This PC Icon Selection
+  - !registryKey: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{088e3905-0323-4b02-9826-5d99428e115f}', operation: add}
+  - !registryKey: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{1CF1260C-4DD0-4ebb-811F-33C572699FDE}', operation: add}
+  - !registryKey: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{24ad3ad4-a569-4530-98e1-ab02f9417aa8}', operation: add}
+  - !registryKey: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{374DE290-123F-4565-9164-39C4925E467B}', operation: add}
+  - !registryKey: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{3ADD1653-EB32-4cb0-BBD7-DFA0ABB5ACCA}', operation: add}
+  - !registryKey: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{3dfdf296-dbec-4fb4-81d1-6a3438bcf4de}', operation: add}
+  - !registryKey: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{A0953C92-50DC-43bf-BE83-3742FED03C9C}', operation: add}
+  - !registryKey: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{A8CDFF1C-4878-43be-B5FD-F8091C1C60D0}', operation: add}
+  - !registryKey: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}', operation: add}
+  - !registryKey: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{d3162b92-9365-467a-956b-92703aca08af}', operation: add}
+  - !registryKey: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a}', operation: add}
+    # Search
+  - !registryValue: {path: 'HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search', value: 'AllowIndexingEncryptedStoresOrItems', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search', value: 'AllowSearchToUseLocation', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search', value: 'AlwaysUseAutoLangDetection', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search', value: 'AllowCortana', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search', value: 'DisableWebSearch', type: REG_DWORD, data: '1'}
+  - !registryValue: {path: 'HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search', value: 'ConnectedSearchUseWeb', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search', value: 'ConnectedSearchUseWebOverMeteredConnections', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search', value: 'AllowCloudSearch', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search', value: 'AllowCloudSearch', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Speech_OneCore\Preferences', value: 'VoiceActivationDefaultOn', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Speech_OneCore\Preferences', value: 'VoiceActivationEnableAboveLockscreen', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Speech_OneCore\Preferences', value: 'ModelDownloadAllowed', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OOBE', value: 'DisableVoice', type: REG_DWORD, data: '1'}
+    # Setup Windows Explorer
+  - !registryKey: {path: 'HKEY_CLASSES_ROOT\CABFolder\CLSID', operation: add}
+  - !registryKey: {path: 'HKEY_CLASSES_ROOT\SystemFileAssociations\.cab\CLSID', operation: add}
+  - !registryKey: {path: 'HKEY_CLASSES_ROOT\CompressedFolder\CLSID', operation: add}
+  - !registryKey: {path: 'HKEY_CLASSES_ROOT\SystemFileAssociations\.zip\CLSID', operation: add}
+    # Taskbar
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\ImmersiveShell', value: 'UseActionCenterExperience', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'HideSCAHealth', type: REG_DWORD, data: '1'}
+    # Remove the Open with Paint 3D from the explorer context menu
+  - !registryKey: {path: 'HKLM\SOFTWARE\Classes\SystemFileAssociations\.bmp\Shell\3D Edit', operation: add}
+  - !registryKey: {path: 'HKLM\SOFTWARE\Classes\SystemFileAssociations\.jpeg\Shell\3D Edit', operation: add}
+  - !registryKey: {path: 'HKLM\SOFTWARE\Classes\SystemFileAssociations\.jpe\Shell\3D Edit', operation: add}
+  - !registryKey: {path: 'HKLM\SOFTWARE\Classes\SystemFileAssociations\.jpg\Shell\3D Edit', operation: add}
+  - !registryKey: {path: 'HKLM\SOFTWARE\Classes\SystemFileAssociations\.jpg\Shell\3D Edit', operation: add}
+  - !registryKey: {path: 'HKLM\SOFTWARE\Classes\SystemFileAssociations\.png\Shell\3D Edit', operation: add}
+  - !registryKey: {path: 'HKLM\SOFTWARE\Classes\SystemFileAssociations\.gif\Shell\3D Edit', operation: add}
+  - !registryKey: {path: 'HKLM\SOFTWARE\Classes\SystemFileAssociations\.tif\Shell\3D Edit', operation: add}
+  - !registryKey: {path: 'HKLM\SOFTWARE\Classes\SystemFileAssociations\.tiff\Shell\3D Edit', operation: add}
+    # Prevent NVCP not found message after installing NVIDIA drivers
+  - !registryKey: {path: 'HKLM\System\CurrentControlSet\Services\nvlddmkm', operation: add}
+  - !registryKey: {path: 'HKLM\System\CurrentControlSet\Services\nvlddmkm\Global', operation: add}
+  - !registryKey: {path: 'HKLM\System\CurrentControlSet\Services\nvlddmkm\Global\NVTweak', operation: add}
+  - !registryValue: {path: 'HKLM\System\CurrentControlSet\Services\nvlddmkm\Global\NVTweak', value: 'DisableStoreNvCplNotifications', type: REG_DWORD, data: '1'}  
+    # Improve new user login experience
+  - !registryValue: {path: 'HKLM\SOFTWARE\Policies\Microsoft\Windows\OOBE', value: 'DisablePrivacyExperience', type: REG_DWORD, data: '1'}
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System', value: 'EnableFirstLogonAnimation', type: REG_DWORD, data: '0'}
+    # Remove Windows Contacts showing up in default apps in W11
+  - !registryKey: {path: 'HKCR\certificate_wab_auto_file', operation: add}
+  - !registryKey: {path: 'HKCR\wab_auto_file', operation: add}
+  - !registryKey: {path: 'HKCR\contact_wab_auto_file', operation: add}
+  - !registryKey: {path: 'HKCR\group_wab_auto_file', operation: add}
+  - !registryKey: {path: 'HKCR\vcard_wab_auto_file', operation: add}
+  - !registryKey: {path: 'HKCR\WAB.AssocProtocol.LDAP', operation: add}
+
+  - !registryKey: {path: 'HKCR\TIFImage.Document', operation: add}
+  - !registryKey: {path: 'HKCR\PhotoViewer.FileAssoc.Tiff', operation: add}
+    # Make Ti explorer nicer
+  - !registryValue: {path: 'HKU\S-1-5-18\SOFTWARE\Microsoft\Windows\CurrentVersion\Search', value: 'SearchboxTaskbarMode', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKU\S-1-5-18\SOFTWARE\Policies\Microsoft\Windows\Explorer', value: 'DisableNotificationCenter', type: REG_DWORD, data: '1'}
+  - !registryValue: {path: 'HKU\S-1-5-18\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowCortanaButton', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKU\S-1-5-18\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowTaskViewButton', type: REG_DWORD, data: '0'}
+    # Autorun
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoDriveTypeAutoRun', type: REG_DWORD, data: '181'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers', value: 'DisableAutoplay', type: REG_DWORD, data: '1'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoAutorun', type: REG_DWORD, data: '1'}
+    # Adobe Security Improvements
+  - !registryKey: {path: 'HKCU\SOFTWARE\Adobe', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\DC', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\DC\JSPrefs', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\DC\JSPrefs', value: 'bEnableJS', type: REG_DWORD, data: '0'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\DC\Originals', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\DC\Originals', value: 'bAllowOpenFile', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\DC\Originals', value: 'bSecureOpenFile', type: REG_DWORD, data: '1'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\DC\Privileged', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\DC\Privileged', value: 'bProtectedMode', type: REG_DWORD, data: '1'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\DC\TrustManager', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\DC\TrustManager', value: 'iProtectedView', type: REG_DWORD, data: '1'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\DC\TrustManager', value: 'bEnhancedSecurityInBrowser', type: REG_DWORD, data: '1'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\DC\TrustManager', value: 'bEnhancedSecurityStandalone', type: REG_DWORD, data: '1'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\XI', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\XI\JSPrefs', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\XI\JSPrefs', value: 'bEnableJS', type: REG_DWORD, data: '0'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\XI\Originals', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\XI\Originals', value: 'bAllowOpenFile', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\XI\Originals', value: 'bSecureOpenFile', type: REG_DWORD, data: '1'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\XI\Privileged', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\XI\Privileged', value: 'bProtectedMode', type: REG_DWORD, data: '1'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\XI\TrustManager', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\XI\TrustManager', value: 'iProtectedView', type: REG_DWORD, data: '1'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\XI\TrustManager', value: 'bEnhancedSecurityInBrowser', type: REG_DWORD, data: '1'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Adobe\Acrobat Reader\XI\TrustManager', value: 'bEnhancedSecurityStandalone', type: REG_DWORD, data: '1'}
+
+    # Office Security Improvements
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\Excel', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\Excel\Security', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\Excel\Security', value: 'PackagerPrompt', type: REG_DWORD, data: '2'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\Excel\Security', value: 'VBAWarnings', type: REG_DWORD, data: '4'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\Excel\Security', value: 'WorkbookLinkWarnings', type: REG_DWORD, data: '2'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\PowerPoint', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\PowerPoint\Security', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\PowerPoint\Security', value: 'PackagerPrompt', type: REG_DWORD, data: '2'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\PowerPoint\Security', value: 'VBAWarnings', type: REG_DWORD, data: '4'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\Word', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\Word\Options', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\Word\Options\vpref', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\Word\Options\vpref', value: 'fNoCalclinksOnopen_90_1', type: REG_DWORD, data: '1'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\Word\Security', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\Word\Security', value: 'PackagerPrompt', type: REG_DWORD, data: '2'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\12.0\Word\Security', value: 'VBAWarnings', type: REG_DWORD, data: '4'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Excel', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Excel\Options', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Excel\Options', value: 'DontUpdateLinks', type: REG_DWORD, data: '1'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Excel\Security', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Excel\Security', value: 'PackagerPrompt', type: REG_DWORD, data: '2'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Excel\Security', value: 'VBAWarnings', type: REG_DWORD, data: '4'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Excel\Security', value: 'WorkbookLinkWarnings', type: REG_DWORD, data: '2'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\PowerPoint', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\PowerPoint\Security', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\PowerPoint\Security', value: 'PackagerPrompt', type: REG_DWORD, data: '2'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\PowerPoint\Security', value: 'VBAWarnings', type: REG_DWORD, data: '4'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Word', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Word\Options', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Word\Options', value: 'DontUpdateLinks', type: REG_DWORD, data: '1'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Word\Options\WordMail', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Word\Options\WordMail', value: 'DontUpdateLinks', type: REG_DWORD, data: '1'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Word\Security', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Word\Security', value: 'PackagerPrompt', type: REG_DWORD, data: '2'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Word\Security', value: 'VBAWarnings', type: REG_DWORD, data: '4'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\14.0\Word\Security', value: 'AllowDDE', type: REG_DWORD, data: '0'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Excel', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Excel\Options', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Excel\Options', value: 'DontUpdateLinks', type: REG_DWORD, data: '1'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Excel\Security', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Excel\Security', value: 'PackagerPrompt', type: REG_DWORD, data: '2'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Excel\Security', value: 'VBAWarnings', type: REG_DWORD, data: '4'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Excel\Security', value: 'WorkbookLinkWarnings', type: REG_DWORD, data: '2'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\PowerPoint', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\PowerPoint\Security', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\PowerPoint\Security', value: 'PackagerPrompt', type: REG_DWORD, data: '2'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\PowerPoint\Security', value: 'VBAWarnings', type: REG_DWORD, data: '4'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Word', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Word\Options', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Word\Options', value: 'DontUpdateLinks', type: REG_DWORD, data: '1'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Word\Options\WordMail', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Word\Options\WordMail', value: 'DontUpdateLinks', type: REG_DWORD, data: '1'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Word\Security', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Word\Security', value: 'PackagerPrompt', type: REG_DWORD, data: '2'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Word\Security', value: 'VBAWarnings', type: REG_DWORD, data: '4'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\15.0\Word\Security', value: 'AllowDDE', type: REG_DWORD, data: '0'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Excel', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Excel\Options', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Excel\Options', value: 'DontUpdateLinks', type: REG_DWORD, data: '1'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Excel\Security', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Excel\Security', value: 'PackagerPrompt', type: REG_DWORD, data: '2'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Excel\Security', value: 'VBAWarnings', type: REG_DWORD, data: '4'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Excel\Security', value: 'WorkbookLinkWarnings', type: REG_DWORD, data: '2'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\PowerPoint', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\PowerPoint\Security', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\PowerPoint\Security', value: 'PackagerPrompt', type: REG_DWORD, data: '2'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\PowerPoint\Security', value: 'VBAWarnings', type: REG_DWORD, data: '4'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Word', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Word\Options', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Word\Options', value: 'DontUpdateLinks', type: REG_DWORD, data: '1'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Word\Options\WordMail', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Word\Options\WordMail', value: 'DontUpdateLinks', type: REG_DWORD, data: '1'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Word\Security', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Word\Security', value: 'PackagerPrompt', type: REG_DWORD, data: '2'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Word\Security', value: 'VBAWarnings', type: REG_DWORD, data: '4'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\16.0\Word\Security', value: 'AllowDDE', type: REG_DWORD, data: '0'}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\Common', operation: add}
+  - !registryKey: {path: 'HKCU\SOFTWARE\Microsoft\Office\Common\Security', operation: add}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Office\Common\Security', value: 'DisableAllActiveX', type: REG_DWORD, data: '1'}
+    # Disables SmartScreen
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\AppHost', value: 'ContentEvaluation', type: REG_DWORD, data: '0'}
+     # Search
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Search', value: 'SearchboxTaskbarMode', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Search', value: 'BingSearchEnabled', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Search', value: 'CortanaConsent', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Search', value: 'CortanaInAmbientMode', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Search', value: 'HistoryViewEnabled', type: REG_DWORD, data: '0'} 
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Search', value: 'HasAboveLockTips', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Search', value: 'AllowSearchToUseLocation', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\SearchSettings', value: 'SafeSearchMode', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Policies\Microsoft\Windows\Explorer', value: 'DisableSearchBoxSuggestions', type: REG_DWORD, data: '1'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\InputPersonalization', value: 'RestrictImplicitTextCollection', type: REG_DWORD, data: '1'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\InputPersonalization', value: 'RestrictImplicitInkCollection', type: REG_DWORD, data: '1'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\InputPersonalization\TrainedDataStore', value: 'AcceptedPrivacyPolicy', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\InputPersonalization\TrainedDataStore', value: 'HarvestContacts', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Personalization\Settings', value: 'AcceptedPrivacyPolicy', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowCortanaButton', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowTaskViewButton', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer', value: 'EnableAutoTray', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'HideSCAMeetNow', type: REG_DWORD, data: '1'}
+    # Disable Security and Maintenance notifications
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.SecurityAndMaintenance', value: 'Enabled', type: REG_DWORD, data: '0'}
+    # Disable configue backup notifications
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.BackupReminder', value: 'Enabled', type: REG_DWORD, data: '0'}
+
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', value: 'ContentDeliveryAllowed', type: REG_DWORD, data: '0'}
+    # Disable "Let's Finish Setting Up Your Device" OOBE screen
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', value: 'SubscribedContent-310093Enabled', type: REG_DWORD, data: '0'}
+    # Settings suggested content
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', value: 'SubscribedContent-338393Enabled', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', value: 'SubscribedContent-353694Enabled', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', value: 'SubscribedContent-353696Enabled', type: REG_DWORD, data: '0'}
+    # Reset privacy settings since they are hidden in settings
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{C1D23ACC-752B-43E5-8448-8D0E519CD6D6}', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\userAccountInformation', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\userAccountInformation', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{2297E4E2-5DBE-466D-A12B-0F8286F0D9CA}', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\appDiagnostics', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\appDiagnostics', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\location', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\location', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{E5323777-F976-4f5b-9B55-B94699C46E44}', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\webcam', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\webcam', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{2EEF81BE-33FA-4800-9670-1CD474972C3F}', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\microphone', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\microphone', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Speech_OneCore\Settings\VoiceActivation\UserPreferenceForAllApps', type: REG_DWORD, value: 'AgentActivationEnabled', data: 1 }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Speech_OneCore\Settings\VoiceActivation\UserPreferenceForAllApps', type: REG_DWORD, value: 'AgentActivationOnLockScreenEnabled', data: 1 }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Speech_OneCore\Settings\VoiceActivation\UserPreferenceForAllApps', type: REG_DWORD, value: 'AgentActivationLastUsed', data: 1 }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{52079E78-A92B-413F-B213-E8FE35712E72}', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\userNotificationListener', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\userNotificationListener', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\activity', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\activity', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{7D7E8402-7C54-4821-A34E-AEEFD62DED93}', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\contacts', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\contacts', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{D89823BA-7180-4B81-B50C-7E471E6121A3}', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\appointments', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\appointments', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\phoneCall', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\phoneCall', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{8BC668CF-7728-45BD-93F8-CF2B3B41D7AB}', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\phoneCallHistory', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\phoneCallHistory', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{9231CB4C-BF57-4AF3-8C55-FDA7BFCC04C5}', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\email', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\email', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{E390DF20-07DF-446D-B962-F5C953062741}', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\userDataTasks', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\userDataTasks', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{992AFA70-6F47-4148-B3E9-3003349C1548}', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\chat', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\chat', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\radios', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\radios', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\bluetoothSync', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\bluetoothSync', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\documentsLibrary', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\documentsLibrary', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\picturesLibrary', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\picturesLibrary', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\videosLibrary', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\videosLibrary', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\broadFileSystemAccess', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\broadFileSystemAccess', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\cellularData', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\cellularData', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\gazeInput', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\gazeInput', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\graphicsCaptureProgrammatic', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\graphicsCaptureProgrammatic', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\graphicsCaptureProgrammatic\NonPackaged', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\graphicsCaptureWithoutBorder', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\graphicsCaptureWithoutBorder', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\graphicsCaptureWithoutBorder\NonPackaged', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\musicLibrary', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\musicLibrary', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\downloadsFolder', type: REG_SZ, value: 'Value', data: 'Allow' }
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\downloadsFolder', type: REG_SZ, value: 'Value', data: 'Allow' }
+
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Start', value: 'ShowFrequentList', type: REG_DWORD, data: '0'}
+  - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Start', value: 'ShowRecentList', type: REG_DWORD, data: '0'}
+
+    # Remove 'Gallery' in file explorer
+  - !registryKey: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace_41040327\{e88865ea-0e1c-4e20-9aa6-edcd0212c87c}', operation: delete}
+
+    # Prevent DsmSvc from communicating with dspg.akamaiedge.net domains
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Device Metadata', value: 'PreventDeviceMetadataFromNetwork', type: REG_DWORD, data: '1'}
+    # Change time server
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\DateTime\Servers', value: '', type: REG_SZ, data: '1'}
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\DateTime\Servers', value: '1', type: REG_SZ, data: 'pool.ntp.org'}
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\DateTime\Servers', value: '2', type: REG_SZ, data: 'time.windows.com'}
+  - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\DateTime\Servers', value: '3', type: REG_SZ, data: 'time.nist.gov'}
+  # Convert users from MS ---> Local accounts
+  - !writeStatus: {status: 'Checking users'}
+  - !run:
+    exeDir: true
+    exe: "CONVERT.bat"
+    weight: 10
+    option: 'amelioration'

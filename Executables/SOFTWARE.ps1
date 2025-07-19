@@ -225,29 +225,25 @@ if ($TranslucentFlyouts) {
 	# Copy to other users
 	$startupShortcut = "$([Environment]::GetFolderPath('Startup'))\TranslucentFlyouts.lnk"
 	$usersRoot = "C:\Users"
-	$systemUserFolders = @("Public", "Default", "defaultuser0", "All Users", "System") # Folders to exclude
 	$startupPath = "AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
 	if (Test-Path $usersRoot -PathType Container) {
 		Get-ChildItem -Path $usersRoot -Directory | ForEach-Object {
 			$username = Join-Path -Path $usersRoot -ChildPath $_.Name
-			# Skip system-related user folders
-			if ($systemUserFolders -notcontains $username) {
-				# Check if the Startup folder actually exists for this user profile
-				$startupdir = Join-Path -Path $username -ChildPath $startupPath
-				if (Test-Path $startupdir -PathType Container) {
-					Write-Output "Copying Startup shortcut for '$username' to '$startupdir'..."
-					try {
-						Copy-Item $startupShortcut -Destination $startupdir -Force -ErrorAction Stop
-						Write-Output "Successfully copied shortcut for '$username'." -ForegroundColor Green
-					}
-					catch {
-						Write-Warning "Failed to copy shortcut to '$startupdir' for user '$username'. Error: $($_.Exception.Message)"
-					}
+			# Check if the Startup folder actually exists for this user profile
+			$startupdir = Join-Path -Path $username -ChildPath $startupPath
+			if (Test-Path $startupdir -PathType Container) {
+				Write-Output "Copying Startup shortcut for '$username' to '$startupdir'..."
+				try {
+					Copy-Item $startupShortcut -Destination $startupdir -Force -ErrorAction Stop
+					Write-Output "Successfully copied shortcut for '$username'." -ForegroundColor Green
 				}
-				else {
-					Write-Warning "Desktop path '$startupdir' not found for user '$username', skipping shortcut copy."
+				catch {
+					Write-Warning "Failed to copy shortcut to '$startupdir' for user '$username'. Error: $($_.Exception.Message)"
 				}
 			}
+			else {
+				Write-Warning "Desktop path '$startupdir' not found for user '$username', skipping shortcut copy."
+			}			
 		}
 	}
 	# ---------- Install

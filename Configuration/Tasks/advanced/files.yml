@@ -41,7 +41,7 @@ actions:
   - !service: {name: "appidsvc", operation: stop}
   - !service: {name: "cryptsvc", operation: stop}
   - !file: {path: "%windir%\\SoftwareDistribution", ignoreErrors: true}
-  - !file: {path: "%windir%\\System32\\OOBE"}
+  # - !file: {path: "%windir%\\System32\\OOBE"}
   # - !file: {path: "%windir%\\System32\\SgrmBroker.exe"}
   # - !file: {path: "%windir%\\System32\\SgrmEnclave.dll"}
   # - !file: {path: "%windir%\\System32\\SgrmEnclave_secure.dll"}
@@ -120,10 +120,10 @@ actions:
   - !file: {path: "%windir%\\System32\\slui.exe"}
   - !file: {path: "%windir%\\System32\\en-US\\slui.exe.mui"}
   - !file: {path: "%windir%\\Prefetch\\SLUI.EXE-724E99D9.pf"}
-  - !file: {path: "%windir%\\System32\\Startupscan.dll"}
-  - !file: {path: "%windir%\\SysWOW64\\Startupscan.dll"}
-  - !file: {path: "%windir%\\System32\\en-US\\Startupscan.dll.mui"}
-  - !file: {path: "%windir%\\SysWOW64\\en-US\\Startupscan.dll.mui"}
+  # - !file: {path: "%windir%\\System32\\Startupscan.dll"}
+  # - !file: {path: "%windir%\\SysWOW64\\Startupscan.dll"}
+  # - !file: {path: "%windir%\\System32\\en-US\\Startupscan.dll.mui"}
+  # - !file: {path: "%windir%\\SysWOW64\\en-US\\Startupscan.dll.mui"}
   - !file: {path: "%SystemDrive%\\ProgramData\\USOShared\\Logs\\System\\MoUsoCoreWorker.2bdb351a-82b4-4f2c-bc55-ec328ca677be.1.etl"}
   - !file: {path: "%SystemDrive%\\ProgramData\\USOShared\\Logs\\System\\MoUsoCoreWorker.4a695923-0852-4c25-9999-60bc09954fbe.1.etl"}
   - !file: {path: "%SystemDrive%\\ProgramData\\USOShared\\Logs\\System\\MoUsoCoreWorker.5e2840a3-5955-481c-83b8-ddd64cdaa7ae.1.etl"}

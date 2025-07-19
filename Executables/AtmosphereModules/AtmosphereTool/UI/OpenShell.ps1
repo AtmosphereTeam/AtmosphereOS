@@ -21,7 +21,7 @@ Remove-TempDirectory
 Write-Output "Configuring Open-Shell"
 New-Item -Path "$programfiles\Open-Shell" -ItemType Directory -Force
 Start-Process -FilePath "$windir\AtmosphereModules\Scripts\SLNT.bat" -ArgumentList "nu" -WindowStyle Hidden -Wait
-Copy-Item -Path "$scriptDir\Skins\Fluent-Metro.skin" -Destination "$programfiles\Open-Shell" -Force
-Copy-Item -Path "$scriptDir\Skins\Fluent-Metro.skin7" -Destination "$programfiles\Open-Shell" -Force
+Copy-Item -Path "$scriptDir\Fluent-Metro.skin" -Destination "$programfiles\Open-Shell\Skins" -Force
+Copy-Item -Path "$scriptDir\Fluent-Metro.skin7" -Destination "$programfiles\Open-Shell\Skins" -Force
 Write-Output "Open-Shell Configured successfully."
 exit

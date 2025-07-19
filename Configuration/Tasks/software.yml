@@ -13,6 +13,16 @@ actions:
     runas: currentUserElevated
     onUpgrade: false
 
+    # AtmosphereTool
+  - !writeStatus: {status: 'Installing AtmosphereTool'}
+  - !powerShell:
+    command: '.\AtmosphereModules\Scripts\ScriptWrappers\InstallAtmosphereTool.ps1'
+    exeDir: true
+    wait: true
+    weight: 120
+    runas: currentUserElevated
+    onUpgrade: false
+
     # Browsers
   - !writeStatus: {status: 'Installing Brave', option: 'browser-brave'}
   - !powerShell:
@@ -22,6 +32,7 @@ actions:
     weight: 120
     option: 'browser-brave'
     runas: currentUserElevated
+    onUpgrade: false
 
   - !writeStatus: {status: 'Installing Firefox', option: 'browser-firefox'}
   - !powerShell:
@@ -31,6 +42,7 @@ actions:
     weight: 120
     option: 'browser-firefox'
     runas: currentUserElevated
+    onUpgrade: false
   - !run:
     exe: 'FIREFOX.cmd'
     exeDir: true
@@ -38,6 +50,7 @@ actions:
     weight: 120
     option: 'browser-firefox'
     runas: currentUserElevated  
+    onUpgrade: false
 
   - !writeStatus: {status: 'Installing LibreWolf', option: 'browser-librewolf'}
   - !powerShell:
@@ -47,6 +60,7 @@ actions:
     weight: 120
     option: 'browser-librewolf'
     runas: currentUserElevated
+    onUpgrade: false
 
   - !writeStatus: {status: 'Installing Google Chrome', option: 'browser-chrome'}
   - !powerShell:
@@ -56,6 +70,7 @@ actions:
     weight: 120
     option: 'browser-chrome'
     runas: currentUserElevated
+    onUpgrade: false
 
   - !writeStatus: {status: 'Installing OperaGX', option: 'browser-operagx'}
   - !powerShell:
@@ -65,6 +80,7 @@ actions:
     weight: 120
     option: 'browser-operagx'
     runas: currentUserElevated
+    onUpgrade: false
     
   # UI Modifications
   - !writeStatus: {status: 'Modifying the Start Menu', option: 'openshell'}
@@ -103,6 +119,7 @@ actions:
     weight: 120
     option: 'install-files'
     runas: currentUserElevated
+    onUpgrade: false
 
   - !writeStatus: {status: 'Installing Notepads'}
   - !powerShell:
@@ -112,6 +129,7 @@ actions:
     weight: 120
     option: 'install-notepads'
     runas: currentUserElevated
+    onUpgrade: false
 
   - !writeStatus: {status: 'Installing App Fetch'}
   - !powerShell:
@@ -121,6 +139,7 @@ actions:
     weight: 120
     option: 'install-appfetch'
     runas: currentUserElevated
+    onUpgrade: false
 
   - !writeStatus: {status: 'Installing UniGetUI'}
   - !powerShell:
@@ -130,6 +149,7 @@ actions:
     weight: 120
     option: 'install-unigetui'
     runas: currentUserElevated
+    onUpgrade: false
 
   - !writeStatus: {status: 'Installing Fluent Terminal'}
   - !powerShell:
@@ -139,3 +159,4 @@ actions:
     weight: 120
     option: 'install-fluentterminal'
     runas: currentUserElevated
+    onUpgrade: false

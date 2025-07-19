@@ -21,7 +21,7 @@ if (!(Test-Path $packageInstall)) {
     exit 1
 }
 
-$package = "*Z-Atmosphere-NoDefender-Package*"
+$package = "*Z-AME-NoDefender-Package*"
 
 try {
 	$packages = (Get-WindowsPackage -online | Where-Object { $_.PackageName -like "*NoDefender*" }).PackageName

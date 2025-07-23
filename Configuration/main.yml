@@ -21,10 +21,10 @@ actions:
   # (for logging purposes i brought this over to main.yml)
   # -------------------------------------------------
   - !task: {path: 'Tasks\copy-folders.yml'}
-  - !task: {path: 'Tasks\Advanced\main.yml', option: 'amelioration'}
+  - !task: {path: 'Tasks\advanced\main.yml', option: 'amelioration'}
   - !writeStatus: {status: 'Preparing Atmosphere'}
-  - !task: {path: 'Tasks\remove-defender.yml', option: 'remove-defender'}
-  - !task: {path: 'Tasks\Advanced\registry.yml', option: 'config-privacy'}
+  - !task: {path: 'Tasks\advanced\windows defender.yml', option: 'remove-defender'}
+  - !task: {path: 'Tasks\advanced\registry.yml'}
   - !task: {path: 'Main\start.yml'}
   - !task: {path: 'Tasks\software.yml'}
   - !task: {path: 'Main\services.yml', option: 'custom-privacy'}

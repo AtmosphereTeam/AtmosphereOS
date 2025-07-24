@@ -13,21 +13,6 @@ $tempDir = Join-Path -Path $(Get-SystemDrive) -ChildPath $([System.Guid]::NewGui
 New-Item $tempDir -ItemType Directory -Force | Out-Null
 Push-Location $tempDir
 
-function WingetCheck {
-    Write-Output "Checking for winget"
-    if (Get-Command winget -ErrorAction SilentlyContinue) {
-        Write-Output "Winget Found" 
-        return true 
-    }
-    Write-Output "Winget not found, trying to install"
-    $packageUrl = "https://aka.ms/getwinget"
-    $packagePath = Join-Path -Path $tempDir -ChildPath "AppInstaller.msixbundle"
-    & curl.exe -L $packageUrl -o $packagePath
-    Write-Output "Installing Winget"
-    Add-AppxPackage -Path $packagePath
-    Remove-TempDirectory
-}
-
 if ($Files) {
     Write-Output "Downloading Files..."
     $packagePath = Join-Path $tempDir "Files.Package_3.9.1.0_x64_arm64.msixbundle"
@@ -39,8 +24,10 @@ if ($Files) {
 
 if ($Notepads) {
     Write-Output "Downloading Notepads..."
-    $packagePath = Join-Path $tempDir "Notepads_1.5.6.0_x86_x64_arm64.msixbundle"
-    & curl.exe -L "https://github.com/0x7c13/Notepads/releases/download/v1.5.6.0/Notepads_1.5.6.0_x86_x64_arm64.msixbundle" -o $packagePath
+    $githubApi = Invoke-RestMethod "https://api.github.com/repos/0x7c13/Notepads/releases/latest" -EA 0
+    $packageUrl = $githubApi.assets.browser_download_url | Where-Object { $_ -like "*.msixbundle" } | Select-Object -First 1
+    $packagePath = Join-Path $tempDir "Notepads_x86_x64_arm64.msixbundle"
+    & curl.exe -L $packageUrl -o $packagePath
     Add-AppxPackage -Path $packagePath
     Write-Host "Notepads installed."
     Remove-TempDirectory
@@ -72,11 +59,10 @@ if ($AppFetch) {
 
 if ($UniGetUI) {
     Write-Output "Downloading UniGetUI..."
-    # Winget is silent for some reason AND UNRELIABLE
-    # WingetCheck
-    # winget install --id=MartiCliment.UniGetUI  -e --silent
+    $githubApi = Invoke-RestMethod "https://api.github.com/repos/marticliment/UniGetUI/releases/latest" -EA 0
+    $exeUrl = $githubApi.assets.browser_download_url | Where-Object { $_ -like "*.exe" } | Select-Object -First 1
     $exePath = Join-Path $tempDir "UniGetUI.Installer.exe"
-    & curl.exe -L "https://github.com/marticliment/UniGetUI/releases/download/3.2.0/UniGetUI.Installer.exe" -o $exePath
+    & curl.exe -L $exeUrl -o $exePath
     Start-Process -FilePath $exePath -ArgumentList  "/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP- /NoAutoStart"
     Start-Sleep -Seconds 100
     Stop-Process -Name "UniGetUI.exe" -Force
@@ -86,8 +72,10 @@ if ($UniGetUI) {
 
 if ($FluentTerminal) {
     Write-Output "Downloading Fluent Terminal..."
+    $githubApi = Invoke-RestMethod "https://api.github.com/repos/felixse/FluentTerminal/releases/latest" -EA 0
+    $zipUrl = $githubApi.assets.browser_download_url | Where-Object { $_ -like "*.zip" } | Select-Object -First 1
     $zipPath = Join-Path $tempDir "FluentTerminal.Package_0.7.7.0.zip"
-    & curl.exe -L "https://github.com/felixse/FluentTerminal/releases/download/0.7.7.0/FluentTerminal.Package_0.7.7.0.zip" -o $zipPath
+    & curl.exe -L $zipUrl -o $zipPath
     Expand-Archive -Path $zipPath -DestinationPath $tempDir
     Add-AppxPackage -Path "$tempDir\FluentTerminal.Package_0.7.7.0_x86_x64.msixbundle"
     Write-Output "Fluent Terminal Installed."

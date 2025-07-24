@@ -22,11 +22,16 @@ To achieve this, Atmosphere will offer **highly customizable install options**, 
 - **UI modifications** – customize the start menu and shell (not everyone likes Fluent Metro)
 - **Software installation** – pick a browser and access recommended software links in the Atmosphere Desktop folder
 - **Windows components** – disable features like Windows Update, Defender, and more
-- **Advanced mode (preview)** – full control: remove system components, Amelioration (to a degree), and other powerful tools
+- **Advanced mode** – full control: remove system components, Amelioration (to a degree), and other powerful tools
 
 ## 🛠️ AtmosphereTool
 
 AtmosphereTool preview is out now on [GitHub](https://github.com/Goldendraggon/AtmosphereTool)
+
+## Atmosphere Hub
+
+- [Atmosphere Discord Server](https://discord.gg/JRsCSV8Tqu)
+- [Atmosphere Website](https://atmosphereos.xyz/)
 
 ## Projects Used
 

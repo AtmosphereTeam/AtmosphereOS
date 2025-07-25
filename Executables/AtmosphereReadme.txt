@@ -10,8 +10,6 @@ Our mission is to deliver an OS that prioritizes:
     User Interface & Usability
     A genuinely user-friendly experience
 
-Please note: Atmosphere is currently in pre-release as we continue fine-tuning the recipe for a full launch.
-
 We hope you enjoy your experience with AtmosphereOS v0.1.0!
 
 <3 — Atmosphere Team & Goldendraggon

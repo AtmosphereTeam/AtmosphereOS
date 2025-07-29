@@ -83,10 +83,11 @@ function Set-ThemeMRU {
     if ([System.Environment]::OSVersion.Version.Build -ge 22000) {
         Stop-ThemeProcesses
         Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes" -Name "ThemeMRU" -Value "$((@(
-            "Atmosphere-v0.4.x-dark.theme",
-            "Atmosphere-v0.4.x-light.theme",
-            "Atmosphere-v0.3.x-dark.theme",
-            "Atmosphere-v0.3.x-light.theme",
+            "atmosphere-v0.1.0-purplecomet.theme",
+            "atmosphere-v0.1.0-bluecomet.theme",
+            "goldendraggon.theme",
+            "kali.theme",
+            "atmosphere-v0.0.1.theme",
             "dark.theme",
             "aero.theme"
         ) | ForEach-Object { "$windir\resources\Themes\$_" }) -join ';');" -Type String -Force
@@ -111,7 +112,7 @@ function Set-LockscreenImage {
     [Windows.System.UserProfile.LockScreen, Windows.System.UserProfile, ContentType = WindowsRuntime] | Out-Null
 
     # setup async
-    $asTaskGeneric = ([System.WindowsRuntimeSystemExtensions].GetMethods() | ? {
+    $asTaskGeneric = ([System.WindowsRuntimeSystemExtensions].GetMethods() | Where-Object {
         $_.Name -eq 'AsTask' -and
         $_.GetParameters().Count -eq 1 -and
         $_.GetParameters()[0].ParameterType.Name -eq 'IAsyncOperation`1'
@@ -123,7 +124,7 @@ function Set-LockscreenImage {
         $netTask.Result
     }
     Function AwaitAction($WinRtAction) {
-        $asTask = ([System.WindowsRuntimeSystemExtensions].GetMethods() | ? { $_.Name -eq 'AsTask' -and $_.GetParameters().Count -eq 1 -and !$_.IsGenericMethod })[0]
+        $asTask = ([System.WindowsRuntimeSystemExtensions].GetMethods() | Where-Object { $_.Name -eq 'AsTask' -and $_.GetParameters().Count -eq 1 -and !$_.IsGenericMethod })[0]
         $netTask = $asTask.Invoke($null, @($WinRtAction))
         $netTask.Wait(-1) | Out-Null
     }

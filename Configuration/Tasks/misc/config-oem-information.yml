@@ -4,7 +4,7 @@ description: Configures OEM information to contain the Atmosphere version and th
 actions:
   - !powerShell:
     command: |
-      $version = 'v0.1.0'
+      $version = 'v0.1.1'
 
       Write-Output 'Setting boot entry name...'
       bcdedit /set description """AtmosphereOS $(('10', '11')[[int]([System.Environment]::OSVersion.Version.Build -ge 22000)]) $version"""
@@ -24,12 +24,12 @@ actions:
 #  - !registryValue:
 #    path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation'
 #    value: 'SupportURL'
-#    data: 'Temporary URL'
+#    data: 'Docs'
 #    type: REG_SZ
 #  - !registryValue:
 #    path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation'
 #    value: 'SupportPhone'
-#    data: 'Temporary Phone'
+#    data: 'Discord'
 #    type: REG_SZ
   - !registryValue:
     path: 'HKLM\SOFTWARE\Atmosphere'

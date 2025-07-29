@@ -6,21 +6,37 @@ actions:
   - !powerShell:
     command: |
       .\AtmosphereModules\initPowerShell.ps1
-      Set-Theme -Path """$([Environment]::GetFolderPath('Windows'))\Resources\Themes\atmosphere-dark.theme"""
       Set-ThemeMRU
     wait: true
     exeDir: true
     runas: currentUserElevated
-    # Weird
-  - !registryValue:
-    path: 'HKCU\Software\Microsoft\Windows\CurrentVersion\Themes'
-    value: 'ThemeMRU'
-    data: 'C:\WINDOWS\resources\Themes\atmosphere-dark.theme'
-    type: REG_SZ
-  - !registryValue
-    path: 'HKCU\Software\Microsoft\Windows\CurrentVersion\Themes'
-    value: 'CurrentTheme'
-    data: 'C:\Windows\Resources\Themes\atmosphere-dark.theme'
+
+    # Set theme
+  - !cmd
+    command: 'start "" "C:\Windows\Resources\Themes\atmosphere-v0.1.0-purplecomet.theme"'
+    option: 'theme-purplecomet'
+    wait: true
+    runas: currentUser
+  - !cmd
+    command: 'start "" "C:\Windows\Resources\Themes\atmosphere-v0.1.0-bluecomet.theme"'
+    option: 'theme-bluecomet'
+    wait: true
+    runas: currentUser
+  - !cmd
+    command: 'start "" "C:\Windows\Resources\Themes\goldendraggon.theme"'
+    option: 'theme-goldendraggon'
+    wait: true
+    runas: currentUser
+  - !cmd
+    command: 'start "" "C:\Windows\Resources\Themes\kali.theme"'
+    option: 'theme-kali'
+    wait: true
+    runas: currentUser
+  - !cmd:
+    command: 'taskkill /f /im SystemSettings.exe'
+    option: 'theme'
+    wait: true
+    runas: currentUserElevated
 
     # Applies Atmosphere lockscreen background
     # Also disables fun facts, tips, tricks, and more on lockscreen - only on Enterprise/Education
@@ -53,7 +69,7 @@ actions:
   - !registryValue:
     path: 'HKCU\Software\Policies\Microsoft\Windows\Personalization'
     value: 'ThemeFile'
-    data: '%windir%\Resources\Themes\atmosphere-dark.theme'
+    data: '%windir%\Resources\Themes\atmosphere-v0.1.0-purplecomet.theme'
     type: REG_SZ
   - !registryValue:
     path: 'HKCU\Software\Microsoft\CurrentVersion\Themes\Personalize'
@@ -67,21 +83,17 @@ actions:
     type: 'REG_DWORD'
     data: 0
     scope: allUsers
-  - !cmd:
-    command: 'C:\Windows\Resources\Themes\atmosphere-dark.theme'
-    wait: true
-    runas: currentUser
     # Backup
-  - !registryValue:
-    path: 'HKCU\Control Panel\Desktop'
-    value: 'WallPaper'
-    data: '%windir%\AtmosphereModules\Wallpapers\atmosphere.png'
-    type: REG_SZ
-  - !cmd:
-    command: 'start "" "C:\Windows\Resources\Themes\atmosphere-dark.theme"'
-    wait: true
-    runas: currentUser
-  - !cmd:
-    command: 'taskkill /f /im SystemSettings.exe'
-    wait: true
-    runas: currentUserElevated
+  # - !registryValue:
+  #   path: 'HKCU\Control Panel\Desktop'
+  #   value: 'WallPaper'
+  #   data: '%windir%\AtmosphereModules\Wallpapers\atmosphere.png'
+  #   type: REG_SZ
+  # - !cmd:
+  #   command: 'start "" "C:\Windows\Resources\Themes\atmosphere-dark.theme"'
+  #   wait: true
+  #   runas: currentUser
+  # - !cmd:
+  #   command: 'taskkill /f /im SystemSettings.exe'
+  #   wait: true
+  #   runas: currentUserElevated

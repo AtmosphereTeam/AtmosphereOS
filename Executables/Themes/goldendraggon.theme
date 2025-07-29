@@ -1,9 +1,9 @@
 [Theme]
-DisplayName=Atmosphere Dark
-ThemeId={FB5C68CD-E525-4324-9830-18BFE1746747}
+DisplayName=Goldendraggon's Theme
+ThemeId={9682470F-5E2F-4B64-810D-B7C058AE09FE}
 
 [Control Panel\Desktop]
-Wallpaper=%windir%\AtmosphereModules\Wallpapers\atmosphere.png
+Wallpaper=%windir%\AtmosphereModules\Wallpapers\goldendraggon.png
 Pattern=
 MultimonBackgrounds=0
 PicturePosition=4
@@ -33,7 +33,7 @@ Path=%windir%\resources\themes\Aero\Aero.msstyles
 ColorStyle=NormalColor
 Size=NormalSize
 AutoColorization=0
-ColorizationColor=0XC44A51A8
+ColorizationColor=0XC4302F50
 SystemMode=Dark
 AppMode=Dark
 VisualStyleVersion=10

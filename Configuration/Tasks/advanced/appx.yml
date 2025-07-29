@@ -50,7 +50,7 @@ actions:
   - !appx: {name: 'Microsoft.BingNews*', type: family}
   - !appx: {name: 'Microsoft.BingSearch*', type: family}
   - !appx: {name: 'Microsoft.OutlookForWindows*', type: family}
-  - !appx: {name: '*OneDrive*', type: family, option: 'uninstall-oned'}
+  - !appx: {name: '*OneDrive*', type: family}
   - !appx: {name: 'Microsoft.GetHelp*', type: family}
   - !appx: {name: 'Microsoft.Microsoft3DViewer*', type: family}
   - !appx: {name: 'Microsoft.MicrosoftOfficeHub*', type: family}
@@ -59,7 +59,7 @@ actions:
   - !appx: {name: 'Microsoft.Office.OneNote*', type: family}
   - !appx: {name: 'Microsoft.People*', type: family}
   - !appx: {name: 'Microsoft.PowerAutomateDesktop*', type: family}
-  - !appx: {name: 'Microsoft.ScreenSketch*', type: family, option: 'remove-snipping-tool'}
+  - !appx: {name: 'Microsoft.ScreenSketch*', type: family}
   - !appx: {name: 'Microsoft.SkypeApp*', type: family}
   - !appx: {name: 'Microsoft.Todos*', type: family}
   - !appx: {name: 'Microsoft.WindowsAlarms*', type: family}

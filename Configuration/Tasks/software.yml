@@ -14,12 +14,13 @@ actions:
     onUpgrade: false
 
     # AtmosphereTool
-  - !writeStatus: {status: 'Installing AtmosphereTool'}
+  - !writeStatus: {status: 'Installing AtmosphereTool', option: 'atmospheretool'}
   - !powerShell:
     command: '.\AtmosphereModules\Scripts\ScriptWrappers\InstallAtmosphereTool.ps1'
     exeDir: true
     wait: true
     weight: 120
+    option: 'atmospheretool'
     runas: currentUserElevated
     onUpgrade: false
 

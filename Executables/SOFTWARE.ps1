@@ -302,6 +302,12 @@ foreach ($a in $vcredists.GetEnumerator()) {
 	Write-Output "Downloading and installing Visual C++ Runtime $vcName..."
 	& curl.exe -LSs "$vcUrl" -o "$vcExePath" $timeouts
 
+	# I dont know why but 2010-x64 takes long time so no wait
+	if ($vcName -eq "2010-x64") {
+		Start-Process -FilePath $vcExePath -ArgumentList $vcArgs -WindowStyle Hidden
+		continue
+	}
+
 	if ($vcArgs -match ":") {
 		$msiDir = "$vcredistDir\vcredist-$vcName"
 		Start-Process -FilePath $vcExePath -ArgumentList "$vcArgs`"$msiDir`"" -Wait -WindowStyle Hidden

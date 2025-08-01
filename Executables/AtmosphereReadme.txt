@@ -1,4 +1,4 @@
-Thank you for installing AtmosphereOS v0.1.0!
+Thank you for installing AtmosphereOS v0.1.1!
 
 We recommend checking out the Atmosphere folder on your desktop to get started.
 
@@ -10,6 +10,6 @@ Our mission is to deliver an OS that prioritizes:
     User Interface & Usability
     A genuinely user-friendly experience
 
-We hope you enjoy your experience with AtmosphereOS v0.1.0!
+We hope you enjoy your experience with AtmosphereOS v0.1.1!
 
 <3 — Atmosphere Team & Goldendraggon

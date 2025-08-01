@@ -101,14 +101,12 @@ actions:
       Get-AppxProvisionedPackage -Online | Where-Object { $_.DisplayName -eq 'Microsoft.YourPhone' } | Remove-AppxProvisionedPackage -Online
     runas: currentUserElevated
     wait: true
-    option: 'remove-yourphone'
   - !powerShell:
     command: |
       Get-AppxPackage MicrosoftWindows.CrossDevice | Remove-AppxPackage
       Get-AppxProvisionedPackage -Online | Where-Object { $_.DisplayName -eq 'MicrosoftWindows.CrossDevice' } | Remove-AppxProvisionedPackage -Online
     runas: currentUserElevated
     wait: true
-    option: 'remove-yourphone'
 
   # Prevent provisioned applications from being reinstalled
   # https://learn.microsoft.com/en-us/windows/application-management/remove-provisioned-apps-during-update

@@ -94,7 +94,7 @@ actions:
     runas: currentUserElevated
     onUpgrade: false
 
-  - !writeStatus: {status: 'Modifying UI'}
+  - !writeStatus: {status: 'Modifying UI', option: 'modify-ui'}
   - !powerShell:
     command: '.\SOFTWARE.ps1 -ModifyUi'
     exeDir: true
@@ -112,7 +112,7 @@ actions:
     onUpgrade: false
   
   # Software
-  - !writeStatus: {status: 'Installing Files'}
+  - !writeStatus: {status: 'Installing Files', option: 'install-files'}
   - !powerShell:
     command: '.\STORE-APPS.ps1 -Files'
     exeDir: true
@@ -122,7 +122,7 @@ actions:
     runas: currentUserElevated
     onUpgrade: false
 
-  - !writeStatus: {status: 'Installing Notepads'}
+  - !writeStatus: {status: 'Installing Notepads', option: 'install-notepads'}
   - !powerShell:
     command: '.\STORE-APPS.ps1 -Notepads'
     exeDir: true
@@ -132,7 +132,7 @@ actions:
     runas: currentUserElevated
     onUpgrade: false
 
-  - !writeStatus: {status: 'Installing App Fetch'}
+  - !writeStatus: {status: 'Installing App Fetch', option: 'install-appfetch'}
   - !powerShell:
     command: '.\STORE-APPS.ps1 -AppFetch'
     exeDir: true
@@ -142,7 +142,7 @@ actions:
     runas: currentUserElevated
     onUpgrade: false
 
-  - !writeStatus: {status: 'Installing UniGetUI'}
+  - !writeStatus: {status: 'Installing UniGetUI', option: 'install-unigetui'}
   - !powerShell:
     command: '.\STORE-APPS.ps1 -UniGetUI'
     exeDir: true
@@ -152,7 +152,7 @@ actions:
     runas: currentUserElevated
     onUpgrade: false
 
-  - !writeStatus: {status: 'Installing Fluent Terminal'}
+  - !writeStatus: {status: 'Installing Fluent Terminal', option: 'install-fluentterminal'}
   - !powerShell:
     command: '.\STORE-APPS.ps1 -FluentTerminal'
     exeDir: true

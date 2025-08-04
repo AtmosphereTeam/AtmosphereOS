@@ -359,7 +359,6 @@ actions:
   - !task: {path: 'Tasks\scripts\script-core-isolation.yml'}
   - !task: {path: 'Tasks\scripts\script-mitigations.yml'}
   - !task: {path: 'Tasks\scripts\script-devices.yml'}
-  - !task: {path: 'Tasks\scripts\script-pfp.yml'}
   - !task: {path: 'Tasks\scripts\script-backup2.yml'}
   - !task: {path: 'Tasks\scripts\script-clientcbs.yml'}
 

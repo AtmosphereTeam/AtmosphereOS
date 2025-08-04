@@ -15,14 +15,14 @@ While based on **AtlasOS**, AtmosphereOS takes a more modular approach — givin
 
 ## 🚧 Current Development Direction
 
-We want Atmosphere to combine the best aspects of major playbooks like **AME11**, **AtlasOS**, and **ReviOS**.  
+We want Atmosphere to combine the best aspects of major playbooks like **Privacy+**, **AtlasOS**, and **ReviOS**.  
 To achieve this, Atmosphere will offer **highly customizable install options**, including:
 
 - **App removal options** – choose which apps to remove (useful for keeping apps others might use)
 - **UI modifications** – customize the start menu and shell (not everyone likes Fluent Metro)
 - **Software installation** – pick a browser and access recommended software links in the Atmosphere Desktop folder
 - **Windows components** – disable features like Windows Update, Defender, and more
-- **Advanced mode** – full control: remove system components, Amelioration (to a degree), and other powerful tools
+- **Advanced tweaks** – full control: remove system components, Amelioration (to a degree), and other powerful tools
 
 ## 🛠️ AtmosphereTool
 

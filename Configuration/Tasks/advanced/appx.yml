@@ -78,7 +78,6 @@ actions:
   - !appx: {name: 'Microsoft.Wallet*', type: family}
   - !appx: {name: 'Microsoft.Xbox', type: family}
   - !appx: {name: '*XboxApp*', type: family}
-  - !appx: {name: '*XboxGameCallableUI*', type: family}
   - !appx: {name: '*GamingApp*', type: family}
 #  - !appx: {name: '*StartMenuExperienceHost*', type: family, option: 'openshell'} keep this incase smth goes wrong
   - !appx: {name: '*WindowsStore*', type: family} 

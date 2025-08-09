@@ -26,7 +26,7 @@ To achieve this, Atmosphere will offer **highly customizable install options**, 
 
 ## 🛠️ AtmosphereTool
 
-AtmosphereTool preview is out now on [GitHub](https://github.com/Goldendraggon/AtmosphereTool)
+AtmosphereTool is out now on [GitHub](https://github.com/Goldendraggon/AtmosphereTool)
 
 ## Atmosphere Hub
 

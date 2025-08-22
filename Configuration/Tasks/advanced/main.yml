@@ -4,11 +4,13 @@ description: Manages the Advanced Mode
 privilege: Admin
 actions:
   - !task: {path: 'Tasks\advanced\registry.yml'}
-  - !task: {path: 'Tasks\advanced\appx.yml'}
+  - !task: {path: 'Tasks\iso\iso.yml', iso: only}
+  - !task: {path: 'Tasks\iso\oobe.yml', oobe: only}
+  - !task: {path: 'Tasks\advanced\appx.yml', iso: false}
   - !task: {path: 'Tasks\advanced\services.yml'}
   - !task: {path: 'Tasks\uninstall\final-boss-of-edge.yml', option: 'uninstall-edge'}
   - !task: {path: 'Tasks\advanced\windows defender.yml'}
   - !task: {path: 'Tasks\advanced\files.yml'}
-  - !task: {path: 'Tasks\advanced\config.yml'}
-  - !task: {path: 'Tasks\advanced\software.yml'}
+  - !task: {path: 'Tasks\advanced\config.yml', iso: false}
+  - !task: {path: 'Tasks\advanced\software.yml', iso: false}
   - !task: {path: 'Tasks\advanced\delete-unused-files.yml'}

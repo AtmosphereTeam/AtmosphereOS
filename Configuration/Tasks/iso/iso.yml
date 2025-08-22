@@ -1,0 +1,124 @@
+---
+title: Iso Downloads
+description: Downloads stuff during Iso injection
+actions:
+ # AtmosphereTool
+ - !status: {status: 'Downloding AtmosphereTool', option: 'atmospheretool'}
+ - !download:
+    option: 'atmospheretool'
+    package: 'atmospheretool'
+    git: 'https://github.com/AtmosphereTeam/AtmosphereTool'
+    regex: '.*\.zip'
+    destination: 'Iso\Installers\AtmosphereTool.zip'
+ # Store Apps
+ - !status: {status: 'Downloding Files', option: 'install-files'}
+ - !download: 
+    option: 'install-files'
+    package: 'files'
+    url: 'https://cdn.files.community/files/stable/Files.Package_3.9.1.0_Test/Files.Package_3.9.1.0_x64_arm64.msixbundle'
+    destination: 'Iso\Installers\Files.msixbundle'
+ - !status: {status: 'Downloding Notepads', option: 'install-notepads'}
+ - !download: 
+    option: 'install-notepads'
+    package: 'notepads'
+    git: 'https://github.com/0x7c13/Notepads'
+    regex: 'Notepads.*\.msixbundle'
+    destination: 'Iso\Installers\Notepads.msixbundle'
+ - !status: {status: 'Downloding AppFetch', option: 'install-appfetch'}
+ - !download: 
+    option: 'install-appfetch'
+    package: 'appfetch'
+    git: 'https://github.com/Ameliorated-LLC/appfetch/'
+    regex: '.*\.exe'
+    destination: 'Iso\Installers\AppFetch.exe'
+ - !status: {status: 'Downloding UniGetUI', option: 'install-unigetui'}
+ - !download: 
+    option: 'install-unigetui'
+    package: 'unigetui'
+    git: 'https://github.com/marticliment/UniGetUI/'
+    regex: 'UniGetUI\.Installer\.exe'
+    destination: 'Iso\Installers\UniGetUI.exe'
+ - !status: {status: 'Downloding FluentTerminal', option: 'install-fluentterminal'}
+ - !download: 
+    option: 'install-fluentterminal'
+    package: 'fluentterminal'
+    git: 'https://github.com/felixse/FluentTerminal'
+    regex: 'FluentTerminal.*\.zip'
+    destination: 'Iso\Installers\FluentTerminal.zip'
+ # Browsers
+ - !status: {status: 'Downloding Brave', option: 'browser-brave'}
+ - !download:
+    option: 'browser-brave'
+    package: 'brave'
+    url: 'https://laptop-updates.brave.com/latest/winx64'
+    destination: 'Iso\Installers\BraveSetup.exe'
+ - !status: {status: 'Downloding Firefox', option: 'browser-firefox'}
+ - !download:
+    option: 'browser-firefox'
+    package: 'firefox'
+    url: 'https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US'
+    destination: 'Iso\Installers\FirefoxSetup.exe'
+ - !status: {status: 'Downloding LibreWolf', option: 'browser-firefox'}
+ - !software:
+    option: "browser-librewolf"
+    package: 'librewolf'
+    source: chocolatey
+    name: "librewolf"
+ - !status: {status: 'Downloding OperaGX', option: 'browser-operagx'}
+ - !download:
+    option: 'browser-operagx'
+    package: 'operagx'
+    url: 'https://download.opera.com/download/get/?id=71824&location=424&nothanks=yes&sub=marine&utm_tryagain=yes'
+    destination: 'Iso\Installers\OperaGXSetup.exe'
+ - !status: {status: 'Downloding Open-Shell', option: 'openshell'}
+ - !download:
+    option: 'openshell'
+    git: 'https://github.com/Open-Shell/Open-Shell-Menu'
+    regex: 'OpenShellSetup.*\.exe'
+    destination: 'Iso\Installers\OpenShellSetup.exe'
+ - !status: {status: 'Downloding Utilities'}
+ - !download:
+    git: 'https://github.com/ip7z/7zip'
+    regex: '7z.*-x64\.exe'
+    destination: 'Iso\Installers\7zip.exe'
+ # vcredists
+ - !download:
+   url: 'https://download.microsoft.com/download/8/B/4/8B42259F-5D70-43F4-AC2E-4B208FD8D66A/vcredist_x64.exe'
+   destination: 'Iso\Installers\vcredists\vcredist_1_x64.exe' 
+ - !download:
+   url: 'https://download.microsoft.com/download/8/B/4/8B42259F-5D70-43F4-AC2E-4B208FD8D66A/vcredist_x86.exe'
+   destination: 'Iso\Installers\vcredists\vcredist_1_x86.exe' 
+ - !download:
+   url: 'https://download.microsoft.com/download/5/D/8/5D8C65CB-C849-4025-8E95-C3966CAFD8AE/vcredist_x64.exe'
+   destination: 'Iso\Installers\vcredists\vcredist_2_x64.exe' 
+ - !download:
+   url: 'https://download.microsoft.com/download/5/D/8/5D8C65CB-C849-4025-8E95-C3966CAFD8AE/vcredist_x86.exe'
+   destination: 'Iso\Installers\vcredists\vcredist_2_x86.exe' 
+ - !download:
+   url: 'https://download.microsoft.com/download/1/6/5/165255E7-1014-4D0A-B094-B6A430A6BFFC/vcredist_x64.exe'
+   destination: 'Iso\Installers\vcredists\vcredist_3_x64.exe' 
+ - !download:
+   url: 'https://download.microsoft.com/download/1/6/5/165255E7-1014-4D0A-B094-B6A430A6BFFC/vcredist_x86.exe'
+   destination: 'Iso\Installers\vcredists\vcredist_3_x86.exe' 
+ - !download:
+   url: 'https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x64.exe'
+   destination: 'Iso\Installers\vcredists\vcredist_4_x64.exe' 
+ - !download:
+   url: 'https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe'
+   destination: 'Iso\Installers\vcredists\vcredist_4_x86.exe' 
+ - !download:
+   url: 'https://aka.ms/highdpimfc2013x64enu'
+   destination: 'Iso\Installers\vcredists\vcredist_5_x64.exe' 
+ - !download:
+   url: 'https://aka.ms/highdpimfc2013x86enu'
+   destination: 'Iso\Installers\vcredists\vcredist_5_x86.exe' 
+ - !download:
+   url: 'https://aka.ms/vs/17/release/vc_redist.x64.exe'
+   destination: 'Iso\Installers\vcredists\vcredist_6_x64.exe' 
+ - !download: 
+   url: 'https://aka.ms/vs/17/release/vc_redist.x86.exe'
+   destination: 'Iso\Installers\vcredists\vcredist_6_x86.exe'
+   # DirectX
+ - !download:
+   url: 'https://download.microsoft.com/download/8/4/A/84A35BF1-DAFE-4AE8-82AF-AD2AE20B6B14/directx_Jun2010_redist.exe'
+   destination: 'Iso\Installers\directx.exe'

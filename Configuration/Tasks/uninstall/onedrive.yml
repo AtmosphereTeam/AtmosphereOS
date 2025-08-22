@@ -4,7 +4,7 @@ description: Removes OneDrive and its components
 privilege: TrustedInstaller
 actions:
     # ---------- OneDrive
-  - !writeStatus: {status: 'Removing OneDrive'}
+  - !status: {status: 'Removing OneDrive'}
   - !taskKill: {name: "OneDriveStandaloneUpdater"}
   - !taskKill: {name: "OneDriveSetup"}
   - !taskKill: {name: "OneDrive*"}

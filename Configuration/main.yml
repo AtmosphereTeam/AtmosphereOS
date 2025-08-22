@@ -20,16 +20,18 @@ actions:
   # Tasks that are run first.
   # (for logging purposes i brought this over to main.yml)
   # -------------------------------------------------
-  - !task: {path: 'Tasks\copy-folders.yml'}
+  - !task: {path: 'Tasks\copy-folders.yml', iso: false}
   - !task: {path: 'Tasks\advanced\main.yml', option: 'amelioration'}
-  - !writeStatus: {status: 'Preparing Atmosphere'}
+  - !status: {status: 'Preparing Atmosphere'}
   - !task: {path: 'Tasks\advanced\windows defender.yml', option: 'remove-defender'}
   - !task: {path: 'Tasks\advanced\registry.yml'}
-  - !task: {path: 'Main\start.yml'}
-  - !task: {path: 'Tasks\software.yml'}
-  - !task: {path: 'Main\services.yml', option: 'custom-privacy'}
-  - !task: {path: 'Main\components.yml'}
-  - !task: {path: 'Main\appx.yml', option: 'custom-privacy'}
+  - !task: {path: 'Tasks\software.yml', iso: false, oobe: false} # cache during injection
+  - !task: {path: 'Tasks\iso\iso.yml', iso: only, option: 'custom-privacy'}
+  - !task: {path: 'Tasks\iso\oobe.yml', oobe: only, option: 'custom-privacy'}
+  - !task: {path: 'Main\start.yml', iso: false}
+  - !task: {path: 'Main\services.yml', option: 'custom-privacy'} 
+  - !task: {path: 'Main\components.yml', iso: false}
+  - !task: {path: 'Main\appx.yml', option: 'custom-privacy', iso: false}
 
 
   # -----------------------------------------------------
@@ -40,10 +42,10 @@ actions:
   # Tasks for modifying network settings, which can lead
   # to improving network performance, security, etc.
   # -----------------------------------------------------
-  - !writeStatus: {status: 'Running networking Tasks'}
+  - !status: {status: 'Running networking Tasks'}
   # Needed for compatibility
   # - !task: {path: 'Tasks\networking\disable-llmnr.yml'}
-  - !task: {path: 'Tasks\networking\atmosphere-network-settings.yml'}
+  - !task: {path: 'Tasks\networking\atmosphere-network-settings.yml', iso: false}
 
   # -------------------------------------------------------------------------- #
   #  networking\shares                                                         #
@@ -62,14 +64,14 @@ actions:
   # Tasks for improving the performance of Windows, such as
   # responsiveness, latency, etc.
   # -----------------------------------------------------
-  - !writeStatus: {status: 'Running performance Tasks'}
+  - !status: {status: 'Running performance Tasks'}
   - !task: {path: 'Tasks\performance\config-mmcss.yml'}
-  - !task: {path: 'Tasks\performance\disable-auto-folder-discovery.yml'}
+  - !task: {path: 'Tasks\performance\disable-auto-folder-discovery.yml', iso: false}
   - !task: {path: 'Tasks\performance\disable-game-bar.yml', option: 'disable-game-bar'}
   - !task: {path: 'Tasks\performance\config-automatic-maintenance.yml', option: 'disable-automatic-maintenance'}
   - !task: {path: 'Tasks\performance\disable-background-apps.yml'}
-  - !task: {path: 'Tasks\performance\disable-fth.yml'}
-  - !task: {path: 'Tasks\performance\disable-sleep-study.yml'}
+  - !task: {path: 'Tasks\performance\disable-fth.yml', iso: false}
+  - !task: {path: 'Tasks\performance\disable-sleep-study.yml', iso: false}
   - !task: {path: 'Tasks\performance\respect-power-modes-search.yml'}
 
 
@@ -78,8 +80,8 @@ actions:
   # -------------------------------------------------------------------------- #
   # Disabled as there's no evidence it helps (likely placebo)
   # - !task: {path: 'Tasks\performance\system\disable-paging.yml'}
-  - !task: {path: 'Tasks\performance\system\optimize-ntfs.yml'}
-  - !task: {path: 'Tasks\performance\system\disable-service-host-split.yml'}
+  - !task: {path: 'Tasks\performance\system\optimize-ntfs.yml', iso: false}
+  - !task: {path: 'Tasks\performance\system\disable-service-host-split.yml', iso: false}
   - !task: {path: 'Tasks\performance\system\win32-priority-seperation.yml'}
 
 
@@ -95,7 +97,7 @@ actions:
   # Also includes disabling features that are commonly
   # related to impacting privacy, like advertising.
   # -----------------------------------------------------
-  - !writeStatus: {status: 'Running privacy Tasks'}
+  - !status: {status: 'Running privacy Tasks'}
   - !task: {path: 'Tasks\privacy\config-app-permissions.yml'}
   - !task: {path: 'Tasks\privacy\config-windows-media-player.yml'}
   - !task: {path: 'Tasks\privacy\disable-activity-feed.yml'}
@@ -106,10 +108,10 @@ actions:
   - !task: {path: 'Tasks\privacy\disable-pca.yml'}
   - !task: {path: 'Tasks\privacy\disable-perf-track.yml'}
   - !task: {path: 'Tasks\privacy\disable-privacy-experience.yml'}
-  - !task: {path: 'Tasks\privacy\disable-recall-snap.yml'}
+  - !task: {path: 'Tasks\privacy\disable-recall-snap.yml', iso: false}
   - !task: {path: 'Tasks\privacy\disable-device-monitoring.yml'}
   - !task: {path: 'Tasks\privacy\disable-rsop-logging.yml'}
-  - !task: {path: 'Tasks\privacy\disable-speech-auto-updates.yml'}
+  - !task: {path: 'Tasks\privacy\disable-speech-auto-updates.yml', iso: false}
   - !task: {path: 'Tasks\privacy\disable-tailored-experiences.yml'}
   - !task: {path: 'Tasks\privacy\disable-user-tracking.yml'}
   - !task: {path: 'Tasks\privacy\disable-web-lang-list-access.yml'}
@@ -144,9 +146,9 @@ actions:
   - !task: {path: 'Tasks\privacy\telemetry\disable-activation-telemetry.yml'}
   - !task: {path: 'Tasks\privacy\telemetry\disable-ceip.yml'}
   - !task: {path: 'Tasks\privacy\telemetry\disable-diagnostic-tracing.yml'}
-  - !task: {path: 'Tasks\privacy\telemetry\disable-dotnet-cli-telemetry.yml'}
+  - !task: {path: 'Tasks\privacy\telemetry\disable-dotnet-cli-telemetry.yml', iso: false}
   - !task: {path: 'Tasks\privacy\telemetry\disable-input-telemetry.yml'}
-  - !task: {path: 'Tasks\privacy\telemetry\disallow-data-collection.yml'}
+  - !task: {path: 'Tasks\privacy\telemetry\disallow-data-collection.yml', iso: false}
 
 
 
@@ -162,10 +164,10 @@ actions:
   # QoL Tasks can be anything, but they are mostly to do
   # with modifying the graphical user interface (GUI).
   # -----------------------------------------------------
-  - !writeStatus: {status: 'Running QoL Tasks'}
-  - !task: {path: 'Tasks\qol\bcdedit-tweaks.yml'}
+  - !status: {status: 'Running QoL Tasks'}
+  - !task: {path: 'Tasks\qol\bcdedit-tweaks.yml', iso: false}
   - !task: {path: 'Tasks\qol\best-wallpaper-quality.yml'}
-  - !task: {path: 'Tasks\qol\config-start-menu.yml'}
+  - !task: {path: 'Tasks\qol\config-start-menu.yml', iso: false}
   - !task: {path: 'Tasks\qol\config-windows-ink-workspace.yml'}
   - !task: {path: 'Tasks\qol\disable-mouse-accel.yml'}
   - !task: {path: 'Tasks\qol\disable-settings-tips.yml'}
@@ -184,14 +186,14 @@ actions:
   - !task: {path: 'Tasks\qol\disable-win11-settings-banner.yml'}
   - !task: {path: 'Tasks\qol\disable-screen-capture-hotkey.yml', option: 'remove-snipping-tool'}
   - !task: {path: 'Tasks\qol\disable-dynamic-lighting.yml'}
-  - !task: {path: 'Tasks\qol\disable-auto-app-archival.yml'}
-  - !task: {path: 'Tasks\qol\add-sharing-settings-shortcut.yml'}
+  - !task: {path: 'Tasks\qol\disable-auto-app-archival.yml', iso: false}
+  - !task: {path: 'Tasks\qol\add-sharing-settings-shortcut.yml', iso: false}
 
   # -------------------------------------------------------------------------- #
   #  qol\appearance                                                            #
   # -------------------------------------------------------------------------- #
   - !task: {path: 'Tasks\qol\appearance\blue-tooltips.yml'}
-  - !task: {path: 'Tasks\qol\appearance\atmosphere-theme.yml', option: 'theme'}
+  - !task: {path: 'Tasks\qol\appearance\atmosphere-theme.yml', option: 'theme', iso: false}
   - !task: {path: 'Tasks\qol\appearance\disallow-theme-changes.yml'}
 
   # -------------------------------------------------------------------------- #
@@ -200,7 +202,7 @@ actions:
   - !task: {path: 'Tasks\qol\windows-update\disable-nagging.yml'}
   - !task: {path: 'Tasks\qol\windows-update\disable-insider.yml'}
   - !task: {path: 'Tasks\qol\windows-update\disable-msrt-telemetry.yml'}
-  - !task: {path: 'Tasks\qol\windows-update\disable-feature-updates.yml'}
+  - !task: {path: 'Tasks\qol\windows-update\disable-feature-updates.yml', iso: false}
   - !task: {path: 'Tasks\qol\windows-update\disable-auto-updates.yml'}
   - !task: {path: 'Tasks\qol\windows-update\disable-auto-reboot.yml'}
   - !task: {path: 'Tasks\qol\windows-update\disable-delivery-optimization.yml'}
@@ -220,7 +222,7 @@ actions:
   - !task: {path: 'Tasks\qol\explorer\disable-invalid-shortcuts-search.yml'}
   - !task: {path: 'Tasks\qol\explorer\disable-check-boxes.yml'}
   - !task: {path: 'Tasks\qol\explorer\disable-folders-this-pc.yml'}
-  - !task: {path: 'Tasks\qol\explorer\disable-network-navigation-pane.yml'}
+  - !task: {path: 'Tasks\qol\explorer\disable-network-navigation-pane.yml', iso: false}
   - !task: {path: 'Tasks\qol\explorer\full-context-on-more-than-15-items.yml'}
   - !task: {path: 'Tasks\qol\explorer\hide-frequently-used-items.yml'}
   - !task: {path: 'Tasks\qol\explorer\import-power-plan.yml'}
@@ -235,8 +237,8 @@ actions:
   - !task: {path: 'Tasks\qol\explorer\classic-search.yml'}
   - !task: {path: 'Tasks\qol\explorer\dont-show-office-files.yml'}
   - !task: {path: 'Tasks\qol\explorer\use-compact-mode.yml'}
-  - !task: {path: 'Tasks\qol\explorer\disable-gallery.yml'}
-  - !task: {path: 'Tasks\qol\explorer\debloat-send-to.yml'}
+  - !task: {path: 'Tasks\qol\explorer\disable-gallery.yml', iso: false}
+  - !task: {path: 'Tasks\qol\explorer\debloat-send-to.yml', iso: false}
   - !task: {path: 'Tasks\qol\explorer\enable-long-paths.yml'}
 
   # -------------------------------------------------------------------------- #
@@ -251,14 +253,14 @@ actions:
   #  qol\explorer\remove-context-menus                                         #
   # -------------------------------------------------------------------------- #
   - !task: {path: 'Tasks\qol\explorer\remove-context-menus\cast-to-device.yml'}
-  - !task: {path: 'Tasks\qol\explorer\remove-context-menus\extract.yml'}
+  - !task: {path: 'Tasks\qol\explorer\remove-context-menus\extract.yml', iso: false}
   - !task: {path: 'Tasks\qol\explorer\remove-context-menus\include-in-library.yml'}
   - !task: {path: 'Tasks\qol\explorer\remove-context-menus\new-bitmap.yml'}
   - !task: {path: 'Tasks\qol\explorer\remove-context-menus\new-rtf.yml'}
   - !task: {path: 'Tasks\qol\explorer\remove-context-menus\paint-3D.yml'}
   - !task: {path: 'Tasks\qol\explorer\remove-context-menus\share.yml'}
   - !task: {path: 'Tasks\qol\explorer\remove-context-menus\troubleshooting-compat.yml'}
-  - !task: {path: 'Tasks\qol\explorer\remove-context-menus\printing.yml'}
+  - !task: {path: 'Tasks\qol\explorer\remove-context-menus\printing.yml', iso: false}
 
   # -------------------------------------------------------------------------- #
   #  qol\security                                                              #
@@ -273,8 +275,8 @@ actions:
   - !task: {path: 'Tasks\qol\shell\disable-low-disk-warning.yml'}
   - !task: {path: 'Tasks\qol\shell\disable-menu-delay.yml'}
   - !task: {path: 'Tasks\qol\shell\disable-network-location-wizard.yml'}
-  - !task: {path: 'Tasks\qol\shell\set-unpinned-notification-items.yml'}
-  - !task: {path: 'Tasks\qol\shell\restore-old-context-menu.yml', option: 'old-context-menu'}
+  - !task: {path: 'Tasks\qol\shell\set-unpinned-notification-items.yml', iso: false}
+  - !task: {path: 'Tasks\qol\shell\restore-old-context-menu.yml', option: 'old-context-menu', iso: false}
   - !task: {path: 'Tasks\qol\shell\show-more-pins.yml'}
   - !task: {path: 'Tasks\qol\shell\no-recommendations-start-menu.yml'}
   - !task: {path: 'Tasks\qol\shell\disable-nearby-sharing.yml'}
@@ -301,11 +303,11 @@ actions:
   - !task: {path: 'Tasks\qol\taskbar\cmd-win-x.yml'}
   - !task: {path: 'Tasks\qol\taskbar\disable-cloud-optimized-content.yml'}
   - !task: {path: 'Tasks\qol\taskbar\disable-desktop-peek.yml'}
-  - !task: {path: 'Tasks\qol\taskbar\disable-news-and-interests.yml'}
+  - !task: {path: 'Tasks\qol\taskbar\disable-news-and-interests.yml', iso: false}
   - !task: {path: 'Tasks\qol\taskbar\disable-tablet-mode.yml'}
   - !task: {path: 'Tasks\qol\taskbar\hide-meet-now.yml'}
   - !task: {path: 'Tasks\qol\taskbar\hide-task-view.yml'}
-  - !task: {path: 'Tasks\qol\taskbar\config-pins.yml', option: 'clean-pins'}
+  - !task: {path: 'Tasks\qol\taskbar\config-pins.yml', option: 'clean-pins', iso: false}
   - !task: {path: 'Tasks\qol\taskbar\disable-copilot.yml'}
   - !task: {path: 'Tasks\qol\taskbar\disable-windows-chat.yml'}
   - !task: {path: 'Tasks\qol\taskbar\set-to-left.yml'}
@@ -321,9 +323,9 @@ actions:
   # These Tasks aim to enhance Windows' security, upon
   # its defaults.
   # -----------------------------------------------------
-  - !writeStatus: {status: 'Running security Tasks'}
+  - !status: {status: 'Running security Tasks'}
   - !task: {path: 'Tasks\security\block-anonymous-enum-sam.yml'}
-  - !task: {path: 'Tasks\security\disable-remote-assistance.yml'}
+  - !task: {path: 'Tasks\security\disable-remote-assistance.yml', iso: false}
 
 
 
@@ -335,14 +337,14 @@ actions:
   # Tasks for debloating Windows, which could be for
   # storage space or convenience.
   # -----------------------------------------------------
-  - !writeStatus: {status: 'Running debloating tasks'}
+  - !status: {status: 'Running debloating tasks'}
   - !task: {path: 'Tasks\debloat\config-content-delivery.yml'}
-  - !task: {path: 'Tasks\debloat\disable-reserved-storage.yml'}
+  - !task: {path: 'Tasks\debloat\disable-reserved-storage.yml', iso: false}
   - !task: {path: 'Tasks\debloat\disable-scheduled-tasks.yml'}
   - !task: {path: 'Tasks\debloat\hide-unused-security-pages.yml'}
   - !task: {path: 'Tasks\debloat\config-storage-sense.yml'}
   - !task: {path: 'Tasks\cleanup.yml'}
-  - !task: {path: 'Tasks\uninstall\ink.yml'}
+  - !task: {path: 'Tasks\uninstall\ink.yml', iso: false}
 
 
 
@@ -354,13 +356,13 @@ actions:
   # These are playbook files that run external PowerShell
   # or batch scripts for more advanced operations.
   # -----------------------------------------------------
-  - !writeStatus: {status: 'Running scripts'}
-  - !task: {path: 'Tasks\scripts\script-file-associations.yml'}
-  - !task: {path: 'Tasks\scripts\script-core-isolation.yml'}
-  - !task: {path: 'Tasks\scripts\script-mitigations.yml'}
-  - !task: {path: 'Tasks\scripts\script-devices.yml'}
-  - !task: {path: 'Tasks\scripts\script-backup2.yml'}
-  - !task: {path: 'Tasks\scripts\script-clientcbs.yml'}
+  - !status: {status: 'Running scripts'}
+  - !task: {path: 'Tasks\scripts\script-file-associations.yml', iso: false}
+  - !task: {path: 'Tasks\scripts\script-core-isolation.yml', iso: false}
+  - !task: {path: 'Tasks\scripts\script-mitigations.yml', iso: false}
+  - !task: {path: 'Tasks\scripts\script-devices.yml', iso: false}
+  - !task: {path: 'Tasks\scripts\script-backup2.yml', iso: false}
+  - !task: {path: 'Tasks\scripts\script-clientcbs.yml', iso: false}
 
 
 
@@ -372,16 +374,16 @@ actions:
   # Miscellaneous Tasks which do not fit into other
   # categories.
   # -----------------------------------------------------
-  - !writeStatus: {status: 'Running miscellaneous tasks'}
-  - !task: {path: 'Tasks\misc\config-time.yml'}
-  - !task: {path: 'Tasks\misc\delete-windows-specific-files.yml'}
-  - !task: {path: 'Tasks\misc\rebuild-perf-counters.yml'}
-  - !task: {path: 'Tasks\misc\make-measuresleep-admin.yml'}
-  - !task: {path: 'Tasks\misc\create-shortcuts.yml'}
-  - !task: {path: 'Tasks\misc\add-music-videos-to-home.yml'}
-  - !task: {path: 'Tasks\misc\add-newUsers-script.yml'}
-  - !task: {path: 'Tasks\scripts\script-power.yml'} # Done last on purpose
-  - !task: {path: 'Tasks\misc\enable-notifications.yml'}
-  - !task: {path: 'Tasks\misc\config-oem-information.yml'}
+  - !status: {status: 'Running miscellaneous tasks'}
+  - !task: {path: 'Tasks\misc\config-time.yml', iso: false}
+  - !task: {path: 'Tasks\misc\delete-windows-specific-files.yml', iso: false}
+  - !task: {path: 'Tasks\misc\rebuild-perf-counters.yml', iso: false}
+  - !task: {path: 'Tasks\misc\make-measuresleep-admin.yml', iso: false}
+  - !task: {path: 'Tasks\misc\create-shortcuts.yml', iso: false, oobe: false}
+  - !task: {path: 'Tasks\misc\add-music-videos-to-home.yml', iso: false}
+  # - !task: {path: 'Tasks\misc\add-newUsers-script.yml'}
+  - !task: {path: 'Tasks\scripts\script-power.yml', iso: false} # Done last on purpose
+  - !task: {path: 'Tasks\misc\enable-notifications.yml', iso: false}
+  - !task: {path: 'Tasks\misc\config-oem-information.yml', iso: false}
   - !task: {path: 'Tasks\misc\disable-resume.yml', builds: [ '>19045' ]}
-  - !task: {path: 'Tasks\misc\atmospherereadme.yml'}
+  - !task: {path: 'Tasks\misc\atmospherereadme.yml', iso: false}

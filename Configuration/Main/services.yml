@@ -21,20 +21,20 @@ actions:
   ## SCRIPTS                                                                                  ##
   ##############################################################################################
 
-  - !writeStatus: {status: 'Disabling File Sharing'}
+  - !status: {status: 'Disabling File Sharing'}
   - !powerShell:
     command: '.\AtmosphereModules\Scripts\ScriptWrappers\DisableFileSharing.ps1 -Silent'
     exeDir: true
     wait: true
     runas: currentUserElevated
 
-  - !writeStatus: {status: 'Disabling Location'}
+  - !status: {status: 'Disabling Location'}
   - !cmd:
     command: '"AtmosphereDesktop\3. General Configuration\Location\Disable Location (default).cmd" /silent'
     exeDir: true
     wait: true
 
-  - !writeStatus: {status: 'Configuring Indexing'}
+  - !status: {status: 'Configuring Indexing'}
   - !cmd:
     command: '"AtmosphereDesktop\3. General Configuration\Search Indexing\Minimal Search Indexing (default).cmd" /silent'
     exeDir: true
@@ -44,7 +44,7 @@ actions:
   ## SERVICES                                                                                 ##
   ##############################################################################################
 
-  - !writeStatus: {status: 'Configuring services'}
+  - !status: {status: 'Configuring services'}
   - !service: {name: "WSearch", operation: change, startup: 4, option: 'openshell'}  
 #  - !service: {name: "BITS", operation: change, startup: 3} # i need to research this a bit
     # Firewall rules to prevent the startmenu from talking
@@ -60,7 +60,7 @@ actions:
   ## DRIVERS                                                                                  ##
   ##############################################################################################
 
-  - !writeStatus: {status: 'Configuring drivers'}
+  - !status: {status: 'Configuring drivers'}
 
   - !service: {name: 'GpuEnergyDrv', operation: change, startup: 4}
     # NetBios support can be enabled with the file sharing script

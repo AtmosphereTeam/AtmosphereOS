@@ -3,7 +3,7 @@ DisplayName=Atmosphere Purple Comet
 ThemeId={BEE13584-5B30-40E7-9811-B4D32C0AD1B0}
 
 [Control Panel\Desktop]
-Wallpaper=%windir%\AtmosphereModules\Wallpapers\atmosphere-v0.1.0-pruplecomet.png
+Wallpaper=%windir%\AtmosphereModules\Wallpapers\atmosphere-v0.1.0-purplecomet.png
 Pattern=
 MultimonBackgrounds=0
 PicturePosition=4

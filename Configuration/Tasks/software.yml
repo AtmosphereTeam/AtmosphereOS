@@ -4,7 +4,7 @@ description: Installs Software
 actions:
     # Initial software
     # 7-Zip, Visual C++ Runtimes, DirectX
-  - !writeStatus: {status: 'Installing utilities'}
+  - !status: {status: 'Installing utilities'}
   - !powerShell:
     command: '.\SOFTWARE.ps1'
     exeDir: true
@@ -14,7 +14,7 @@ actions:
     onUpgrade: false
 
     # AtmosphereTool
-  - !writeStatus: {status: 'Installing AtmosphereTool', option: 'atmospheretool'}
+  - !status: {status: 'Installing AtmosphereTool', option: 'atmospheretool'}
   - !powerShell:
     command: '.\AtmosphereModules\Scripts\ScriptWrappers\InstallAtmosphereTool.ps1'
     exeDir: true
@@ -25,7 +25,7 @@ actions:
     onUpgrade: false
 
     # Browsers
-  - !writeStatus: {status: 'Installing Brave', option: 'browser-brave'}
+  - !status: {status: 'Installing Brave', option: 'browser-brave'}
   - !powerShell:
     command: '.\SOFTWARE.ps1 -Brave'
     exeDir: true
@@ -35,7 +35,7 @@ actions:
     runas: currentUserElevated
     onUpgrade: false
 
-  - !writeStatus: {status: 'Installing Firefox', option: 'browser-firefox'}
+  - !status: {status: 'Installing Firefox', option: 'browser-firefox'}
   - !powerShell:
     command: '.\SOFTWARE.ps1 -Firefox'
     exeDir: true
@@ -53,7 +53,7 @@ actions:
     runas: currentUserElevated  
     onUpgrade: false
 
-  - !writeStatus: {status: 'Installing LibreWolf', option: 'browser-librewolf'}
+  - !status: {status: 'Installing LibreWolf', option: 'browser-librewolf'}
   - !powerShell:
     command: '.\LIBREWOLF.ps1'
     exeDir: true
@@ -63,7 +63,7 @@ actions:
     runas: currentUserElevated
     onUpgrade: false
 
-  - !writeStatus: {status: 'Installing Google Chrome', option: 'browser-chrome'}
+  - !status: {status: 'Installing Google Chrome', option: 'browser-chrome'}
   - !powerShell:
     command: '.\SOFTWARE.ps1 -Chrome'
     exeDir: true
@@ -73,7 +73,7 @@ actions:
     runas: currentUserElevated
     onUpgrade: false
 
-  - !writeStatus: {status: 'Installing OperaGX', option: 'browser-operagx'}
+  - !status: {status: 'Installing OperaGX', option: 'browser-operagx'}
   - !powerShell:
     command: '.\SOFTWARE.ps1 -OperaGX'
     exeDir: true
@@ -84,7 +84,7 @@ actions:
     onUpgrade: false
     
   # UI Modifications
-  - !writeStatus: {status: 'Modifying the Start Menu', option: 'openshell'}
+  - !status: {status: 'Modifying the Start Menu', option: 'openshell'}
   - !powerShell:
     command: '.\SOFTWARE.ps1 -OpenShell'
     exeDir: true
@@ -94,7 +94,7 @@ actions:
     runas: currentUserElevated
     onUpgrade: false
 
-  - !writeStatus: {status: 'Modifying UI', option: 'modify-ui'}
+  - !status: {status: 'Modifying UI', option: 'modify-ui'}
   - !powerShell:
     command: '.\SOFTWARE.ps1 -ModifyUi'
     exeDir: true
@@ -112,7 +112,7 @@ actions:
     onUpgrade: false
   
   # Software
-  - !writeStatus: {status: 'Installing Files', option: 'install-files'}
+  - !status: {status: 'Installing Files', option: 'install-files'}
   - !powerShell:
     command: '.\STORE-APPS.ps1 -Files'
     exeDir: true
@@ -122,7 +122,7 @@ actions:
     runas: currentUserElevated
     onUpgrade: false
 
-  - !writeStatus: {status: 'Installing Notepads', option: 'install-notepads'}
+  - !status: {status: 'Installing Notepads', option: 'install-notepads'}
   - !powerShell:
     command: '.\STORE-APPS.ps1 -Notepads'
     exeDir: true
@@ -132,7 +132,7 @@ actions:
     runas: currentUserElevated
     onUpgrade: false
 
-  - !writeStatus: {status: 'Installing App Fetch', option: 'install-appfetch'}
+  - !status: {status: 'Installing App Fetch', option: 'install-appfetch'}
   - !powerShell:
     command: '.\STORE-APPS.ps1 -AppFetch'
     exeDir: true
@@ -142,7 +142,7 @@ actions:
     runas: currentUserElevated
     onUpgrade: false
 
-  - !writeStatus: {status: 'Installing UniGetUI', option: 'install-unigetui'}
+  - !status: {status: 'Installing UniGetUI', option: 'install-unigetui'}
   - !powerShell:
     command: '.\STORE-APPS.ps1 -UniGetUI'
     exeDir: true
@@ -152,7 +152,7 @@ actions:
     runas: currentUserElevated
     onUpgrade: false
 
-  - !writeStatus: {status: 'Installing Fluent Terminal', option: 'install-fluentterminal'}
+  - !status: {status: 'Installing Fluent Terminal', option: 'install-fluentterminal'}
   - !powerShell:
     command: '.\STORE-APPS.ps1 -FluentTerminal'
     exeDir: true

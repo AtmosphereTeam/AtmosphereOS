@@ -4,7 +4,7 @@ description: Removes Windows Defender and disables its services
 privilege: TrustedInstaller
 actions:
     # ---------- Windows Defender
-  - !writeStatus: {status: 'Removing Windows Defender'}
+  - !status: {status: 'Removing Windows Defender'}
   - !powerShell:
       command: '.\RemoveSecHealthApp.ps1'
       exeDir: true
@@ -48,7 +48,7 @@ actions:
     path: "\\Microsoft\\Windows\\Windows Defender\\Windows Defender Verification"
     operation: delete
     # ---------- Update Health Tools
-  - !writeStatus: {status: 'Removing Update Health'}
+  - !status: {status: 'Removing Update Health'}
 
   - !registryKey: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\UpdateHealthTools'}
   - !registryKey: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\rempl'}
@@ -59,7 +59,7 @@ actions:
   - !file: {path: "%ProgramW6432%\\Microsoft Update Health Tools"}
   
     # ---------- PC Health Check
-  - !writeStatus: {status: 'Removing PC Health Check'}
+  - !status: {status: 'Removing PC Health Check'}
 
   - !file:
     path: "%ProgramW6432%\\PCHealthCheck"

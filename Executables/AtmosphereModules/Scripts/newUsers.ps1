@@ -112,31 +112,45 @@ if (Test-Path $allUpViewPath) {
 # Start TranslucentFlyouts on login
 New-Shortcut -Source "$windir\AtmosphereModules\Tools\TranslucentFlyouts\launch_win32.cmd" -Destination "$startupdir\TranslucentFlyouts.lnk"
 
+# Kill Resume on login (Win11)
+if ([System.Environment]::OSVersion.Version.Build -ge 22000) { New-Shortcut -Source "$windir\AtmosphereModules\Scripts\Taskkill_CDR.cmd" -Destination "$([Environment]::GetFolderPath('Startup'))\Taskkill_CDR.lnk" }
+
 # Open-Shell
 Start-Process -FilePath "$windir\AtmosphereModules\Scripts\SLNT.bat" -ArgumentList "nu"
- 
+
 # Set Atmosphere theme as default for current user
 $themeKey = "Registry::HKEY_USERS\$ownerSid\Software\Policies\Microsoft\Windows\Personalization"
 New-Item -Path $themeKey -Force | Out-Null
-Set-ItemProperty -Path $themeKey -Name "ThemeFile" -Value "$windir\Resources\Themes\atmosphere-dark.theme"
+Set-ItemProperty -Path $themeKey -Name "ThemeFile" -Value "$windir\Resources\Themes\atmosphere-v0.1.0-purplecomet.theme"
 
 # Apply the theme immediately
-Start-Process -FilePath "$windir\Resources\Themes\atmosphere-dark.theme" -Wait
+Start-Process -FilePath "$windir\Resources\Themes\atmosphere-v0.1.0-purplecomet.theme" -Wait
 Stop-Process -Name "SystemSettings" -Force -ErrorAction SilentlyContinue
 
 # Set custom wallpaper
 $wallpaperKey = "Registry::HKEY_USERS\$ownerSid\Control Panel\Desktop"
-Set-ItemProperty -Path $wallpaperKey -Name "WallPaper" -Value "$windir\AtmosphereModules\Wallpapers\atmosphere.png"
+Set-ItemProperty -Path $wallpaperKey -Name "WallPaper" -Value "$windir\AtmosphereModules\Wallpapers\atmosphere-v0.1.0-purplecomet.png"
 
 # Set dark mode
 $personalizePath = "Registry::HKEY_USERS\$ownerSid\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize"
 New-Item -Path $personalizePath -Force | Out-Null
 Set-ItemProperty -Path $personalizePath -Name "AppsUseLightTheme" -Value 0
 Set-ItemProperty -Path $personalizePath -Name "SystemUsesLightTheme" -Value 0
+Set-ItemProperty -Path $personalizePath -Name "EnableTransparency" -Value 1
+
+# AtmosphereTool
+if (Test-Path "C:\Program Files\AtmosphereTool\AtmosphereTool.exe") {
+    New-Shortcut -Source "C:\Program Files\AtmosphereTool\AtmosphereTool.exe" -Destination "$profilePath\Desktop\AtmosphereTool.lnk"
+}
 
 # Atmosphere Desktop
 if (-not (Test-Path "$profilePath\Desktop\Atmosphere.lnk")) {
     New-Shortcut -Source "$windir\AtmosphereDesktop" -Destination "$profilePath\Desktop\Atmosphere.lnk" -Icon "$windir\AtmosphereModules\Other\atmosphere-folder.ico,0"
+}
+
+# AppFetch
+if (Test-Path "C:\ProgramData\AppFetch.exe") {
+    New-Shortcut -Source "C:\ProgramData\AppFetch.exe" -Destination "$profilePath\Desktop\AppFetch.lnk"
 }
 
 # Leave

@@ -2,7 +2,7 @@
 title: Initial Configuration
 description: Performs the preliminary configuration
 actions:
-  - !writeStatus: {status: 'Setting the environment'}
+  - !status: {status: 'Setting the environment'}
   - !powerShell:
     wait: true
     command: |
@@ -32,22 +32,29 @@ actions:
     exeDir: true
     wait: true
     runas: currentUserElevated
+    oobe: false
+  - !powerShell:
+    command: '.\Default.ps1 -Iso'
+    exeDir: true
+    wait: true
+    runas: currentUserElevated
+    oobe: only
 
   ################ NO LOCAL BUILD ################
 
-  - !writeStatus: {status: 'Enabling DirectPlay'}
+  - !status: {status: 'Enabling DirectPlay'}
   - !run: {exe: 'DISM.exe', args: '/Online /Enable-Feature /FeatureName:"DirectPlay" /NoRestart /All', weight: 30}
   
-  - !writeStatus: {status: 'Disabling Internet Explorer', builds: [ '<22000' ]}
+  - !status: {status: 'Disabling Internet Explorer', builds: [ '<22000' ]}
   - !run: {exe: 'DISM.exe', args: '/Online /Disable-Feature /FeatureName:"Internet-Explorer-Optional-amd64" /NoRestart', weight: 30, builds: [ '<22000' ]}
 
-  - !writeStatus: {status: 'Disabling Maths Recognizer', builds: [ '<22000' ]}
+  - !status: {status: 'Disabling Maths Recognizer', builds: [ '<22000' ]}
   - !run: {exe: 'DISM.exe', args: '/Online /Remove-Capability /CapabilityName:"MathRecognizer~~~~0.0.1.0" /NoRestart', weight: 30, builds: [ '<22000' ]}
 
-  - !writeStatus: {status: 'Disabling Steps Recorder'}
+  - !status: {status: 'Disabling Steps Recorder'}
   - !run: {exe: 'DISM.exe', args: '/Online /Remove-Capability /CapabilityName:"App.StepsRecorder~~~~0.0.1.0" /NoRestart', weight: 30}
 
-  - !writeStatus: {status: 'Cleaning the component store'}
+  - !status: {status: 'Cleaning the component store'}
   - !run: {exe: 'DISM.exe', args: '/Online /Cleanup-Image /StartComponentCleanup', weight: 50, wait: false} # Stubborn
 
   ################ END NO LOCAL BUILD ################

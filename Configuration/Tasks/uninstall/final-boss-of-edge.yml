@@ -4,7 +4,7 @@ description: Removes Microsoft Edge and its components
 privilege: TrustedInstaller
 actions:
       # ---------- Microsoft Edge
-  - !writeStatus: {status: 'Removing Microsoft Edge'}
+  - !status: {status: 'Removing Microsoft Edge'}
   - !powerShell:
     command: '& """.\AtmosphereModules\Scripts\ScriptWrappers\RemoveEdge.ps1""" -UninstallEdge -RemoveEdgeData -KeepAppX -NonInteractive'
     runas: currentUserElevated
@@ -55,7 +55,7 @@ actions:
   - !registryKey: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Appx\AppxAllUserStore\Deprovisioned\Microsoft.MicrosoftEdge.Stable_8wekyb3d8bbwe', operation: add}
   - !registryKey: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Appx\AppxAllUserStore\Deprovisioned\Microsoft.MicrosoftEdge_8wekyb3d8bbwe', operation: add}
     # WebView
-  - !writeStatus: {status: 'Removing WebView2'}
+  - !status: {status: 'Removing WebView2'}
   - !registryKey: {path: 'HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Microsoft EdgeWebView'}
 
   - !registryValue: {path: 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run', value: 'Microsoft Edge Update', operation: delete}
@@ -92,7 +92,7 @@ actions:
   - !file: {path: "%ProgramFiles(x86)%\\Microsoft\\EdgeWebView", weight: 10}
 
       # Internet Explorer
-  - !writeStatus: {status: 'Removing Internet Explorer'}
+  - !status: {status: 'Removing Internet Explorer'}
   - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Internet Explorer\Main\EnterpriseMode', value: 'MSEdgePath', operation: delete}
   - !registryKey: {path: 'HKLM\SOFTWARE\Microsoft\Internet Explorer\Low Rights\ElevationPolicy\{c9abcf16-8dc2-4a95-bae3-24fd98f2ed29}'}
   - !registryKey: {path: 'HKLM\SOFTWARE\WOW6432Node\Microsoft\Internet Explorer\Low Rights\ElevationPolicy\{c9abcf16-8dc2-4a95-bae3-24fd98f2ed29}'}

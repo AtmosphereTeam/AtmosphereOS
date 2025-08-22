@@ -326,7 +326,7 @@ actions:
   - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\DateTime\Servers', value: '2', type: REG_SZ, data: 'time.windows.com'}
   - !registryValue: {path: 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\DateTime\Servers', value: '3', type: REG_SZ, data: 'time.nist.gov'}
   # Convert users from MS ---> Local accounts
-  - !writeStatus: {status: 'Checking users'}
+  - !status: {status: 'Checking users'}
   - !run:
     exeDir: true
     exe: "CONVERT.bat"

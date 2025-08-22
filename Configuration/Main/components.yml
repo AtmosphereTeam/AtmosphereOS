@@ -24,7 +24,7 @@ actions:
   - !task: {path: 'Tasks\uninstall\onedrive.yml', option: 'uninstall-oned'}
 
     # Windows components and Telemetry
-  - !writeStatus: {status: 'Removing components'}
+  - !status: {status: 'Removing components'}
   - !powerShell:
     command: >-
       & """$([Environment]::GetFolderPath('Windows'))\AtmosphereModules\Scripts\packageInstall.ps1"""

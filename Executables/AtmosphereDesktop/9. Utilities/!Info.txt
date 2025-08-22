@@ -1,0 +1,7 @@
+A short description of the utilities.
+HiBit Uninstaller: a powerful program for uninstalling programs with advanced cleanup and other useful cleanup tools
+WizTree: see a visual graph of whats taking space on your drive
+WizFile: really fast file search
+CrystalDiskInfo: gives status info about your hdd/ssd
+PowerToys: Microsofts' made utilities like text extractor, power rename and command palette
+7zip: archive type (.7z and .zip) file manager 

@@ -1,0 +1,20 @@
+---
+title: oobe actions
+description: Step 2 of iso compatibility
+actions:
+ - !status: {status: 'Installing Software'}
+ - !software:
+   option: "browser-librewolf"
+   package: 'librewolf'
+   source: chocolatey
+   name: "librewolf"
+ - !powerShell:
+   option: '!modify-ui'
+   command: '.\Iso\oobeinstalls.ps1'
+   exeDir: true
+   wait: true
+ - !powerShell:
+   option: 'modify-ui'
+   command: '.\Iso\oobeinstalls.ps1 -ModifyUI'
+   exeDir: true
+   wait: true

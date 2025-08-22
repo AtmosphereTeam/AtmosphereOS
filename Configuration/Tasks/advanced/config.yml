@@ -8,7 +8,7 @@ actions:
   - !run: {exe: 'w32tm', args: '/config /manualpeerlist:pool.ntp.org /syncfromflags:manual /update'}
   - !run: {exe: 'w32tm', args: '/resync'}
 
-  - !writeStatus: {status: 'Cleaning user interface'}
+  - !status: {status: 'Cleaning user interface'}
   - !service:
     name: "WpnService"
     operation: stop
@@ -27,13 +27,13 @@ actions:
     
   - !run: {exe: "explorer.exe", wait: false, runas: currentUser}
 
-  - !writeStatus: {status: 'Implementing SFC mitigation'}
+  - !status: {status: 'Implementing SFC mitigation'}
   - !run:
     exeDir: true
     exe: "SFCDEPLOY.bat"
     weight: 5
 
-  - !writeStatus: {status: 'Modifying login screen'}
+  - !status: {status: 'Modifying login screen'}
   - !run:
     exeDir: true
     exe: "LOGIN.bat"

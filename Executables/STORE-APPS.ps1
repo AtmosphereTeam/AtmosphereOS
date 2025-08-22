@@ -46,7 +46,8 @@ if ($AppFetch) {
         $exeUrl = $githubApi.assets.browser_download_url | Where-Object { $_ -like "*.exe" } | Select-Object -First 1
         $exePath = Join-Path $tempDir "App Fetch.exe"
         & curl.exe -L $exeUrl -o $exePath
-        Move-Item -Path "$exePath" -Destination "$DesktopPath\App Fetch.exe" -Force
+        Move-Item -Path "$exePath" -Destination "C:\ProgramData\AppFetch.exe" -Force
+        New-Shortcut -Source "C:\ProgramData\AppFetch.exe" -Destination "$DesktopPath\AppFetch.lnk"
         Write-Output "MS Store App Fetcher downloaded to your Desktop."
         Remove-TempDirectory
     }

@@ -4,7 +4,7 @@ description: Cleans up most of the remaining things
 privilege: TrustedInstaller
 actions:
   # TrustedInstaller Mode lol
- - !writeStatus: {status: 'Cleaning up'}
+ - !status: {status: 'Cleaning up'}
    # Xbox cleanup
 # Nope
 # - !file: {path: '%ProgramFiles%\WindowsApps\Microsoft.GamingApp*', option: 'amelioration'}

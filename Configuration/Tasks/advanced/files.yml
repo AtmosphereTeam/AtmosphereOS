@@ -3,7 +3,7 @@ title: Files
 description: Deletes certain Windows files
 privilege: TrustedInstaller
 actions:
-  - !writeStatus: {status: "Removing files"}
+  - !status: {status: "Removing files"}
   - !taskKill: {name: "explorer"}
   - !taskKill: {name: "msedge"}
   - !scheduledTask: {path: "\\Microsoft\\Windows\\Customer Experience Improvement Program\\Consolidator", operation: delete}

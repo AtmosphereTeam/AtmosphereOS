@@ -15,18 +15,12 @@ While based on **AtlasOS**, AtmosphereOS takes a more modular approach — givin
 
 ## 🚧 Current Development Direction
 
-We want Atmosphere to combine the best aspects of major playbooks like **Privacy+**, **AtlasOS**, and **ReviOS**.  
-To achieve this, Atmosphere will offer **highly customizable install options**, including:
-
-- **App removal options** – choose which apps to remove (useful for keeping apps others might use)
-- **UI modifications** – customize the start menu and shell (not everyone likes Fluent Metro)
-- **Software installation** – pick a browser and access recommended software links in the Atmosphere Desktop folder
-- **Windows components** – disable features like Windows Update, Defender, and more
-- **Advanced tweaks** – full control: remove system components, Amelioration (to a degree), and other powerful tools
+Join our [Discord Server](https://discord.gg/JRsCSV8Tqu) for development updates.
 
 ## 🛠️ AtmosphereTool
 
-AtmosphereTool is out now on [GitHub](https://github.com/Goldendraggon/AtmosphereTool)
+While the playbook being powerful on its own, we plan to increase AtmosphereOS capabilities with AtmosphereTool. We plan on moving away from the script based settings folder into our own AtmosphereTool. 
+AtmosphereTool is on [GitHub](https://github.com/Goldendraggon/AtmosphereTool)
 
 ## Atmosphere Hub
 

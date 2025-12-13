@@ -15,7 +15,9 @@ While based on **AtlasOS**, AtmosphereOS takes a more modular approach — givin
 
 ## 🚧 Current Development Direction
 
-Join our [Discord Server](https://discord.gg/JRsCSV8Tqu) for development updates.
+~~Join our [Discord Server]() for development updates.~~ 
+
+Our Discord server got deleted by a rogue team member. For development updates check our [Atmosphere Development Project](https://github.com/orgs/AtmosphereTeam/projects/1).
 
 ## 🛠️ AtmosphereTool
 
@@ -24,7 +26,7 @@ AtmosphereTool is on [GitHub](https://github.com/Goldendraggon/AtmosphereTool)
 
 ## Atmosphere Hub
 
-- [Atmosphere Discord Server](https://discord.gg/JRsCSV8Tqu)
+- ~~[Atmosphere Discord Server]()~~ If you need to contact a team member please send a dm to `goldendraggon` or `mono.tar` on Discord.
 - [Atmosphere Website](https://atmosphereos.xyz/)
 
 ## Projects Used

@@ -17,6 +17,8 @@ While based on **AtlasOS**, AtmosphereOS takes a more modular approach — givin
 
 Join our [Discord Server](https://discord.gg/Aur9PGvzVt) for development updates.
 
+You can also check [Atmosphere Development Project](https://github.com/orgs/AtmosphereTeam/projects/1).
+
 ## 🛠️ AtmosphereTool
 
 While the playbook being powerful on its own, we plan to increase AtmosphereOS capabilities with AtmosphereTool.

@@ -26,7 +26,7 @@ AtmosphereTool is on [GitHub](https://github.com/Goldendraggon/AtmosphereTool)
 
 ## Atmosphere Hub
 
-- ~~[Atmosphere Discord Server]()~~ If you need to contact a team member please send a dm to `goldendraggon` or `mono.tar` on Discord.
+- [Atmosphere Discord Server](https://discord.gg/Aur9PGvzVt) 
 - [Atmosphere Website](https://atmosphereos.xyz/)
 
 ## Projects Used

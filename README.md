@@ -26,7 +26,6 @@ AtmosphereTool is on [GitHub](https://github.com/Goldendraggon/AtmosphereTool)
 
 ## Atmosphere Hub
 
-- [Atmosphere Discord Server](https://discord.gg/Aur9PGvzVt)
 - [Atmosphere Discord Server](https://discord.gg/Aur9PGvzVt) 
 - [Atmosphere Website](https://atmosphereos.xyz/)
 

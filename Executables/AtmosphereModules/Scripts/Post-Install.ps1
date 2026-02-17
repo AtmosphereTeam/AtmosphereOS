@@ -183,10 +183,10 @@ Start-Process -FilePath "$windir\AtmosphereModules\Scripts\SLNT.bat" -ArgumentLi
 $options = Get-ItemPropertyValue -Path "Registry::HKEY_LOCAL_MACHINE\SOFTWARE\AME\Playbooks\Applied\{8BBB362C-858B-41D9-A9EA-83A4B9669C43}" -Name "SelectedOptions"
 
 $Themes = [ordered] @{
-    "theme-purplecomet" = "atmosphere-v0.1.0-purplecomet.theme"
+    "theme-purplecomet" = "atmosphere-v0.2.0.theme.theme"
     "theme-bluecomet" = "atmosphere-v0.1.0-bluecomet.theme"
     "theme-goldendraggon" = "goldendraggon.theme"
-    "theme-kali" = "kali.theme"
+    "theme-mono" = "mono.theme"
 }
 
 foreach ($Theme in $Themes.GetEnumerator()) {

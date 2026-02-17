@@ -258,6 +258,14 @@ if ($TranslucentFlyouts) {
 ##    Utilities    ##
 #####################
 
+# .NET 10.0 Desktop Runtime
+Write-Output "Downloading .NET 10.0 Desktop Runtime..."
+& curl.exe -LSs "https://builds.dotnet.microsoft.com/dotnet/WindowsDesktop/10.0.3/windowsdesktop-runtime-10.0.3-win-x64.exe" -o "$tempDir\RuntimeInstaller.exe" $timeouts
+Write-Output "Installing .NET 10.0 Desktop Runtime..."
+Start-Process -FilePath "$tempDir\RuntimeInstaller.exe" -WindowStyle Hidden -ArgumentList '/install /quiet /norestart' -Wait
+Write-Output ".NET 10.0 Desktop Runtime installed successfully."
+Remove-TempDirectory
+
 # Visual C++ Runtimes (referred to as vcredists for short)
 # https://learn.microsoft.com/en-US/cpp/windows/latest-supported-vc-redist
 $legacyArgs = '/q /norestart'

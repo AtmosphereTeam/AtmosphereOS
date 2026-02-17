@@ -13,13 +13,8 @@ actions:
 
     # Set theme
   - !cmd
-    command: 'start "" "C:\Windows\Resources\Themes\atmosphere-v0.1.0-purplecomet.theme"'
-    option: 'theme-purplecomet'
-    wait: true
-    runas: currentUser
-  - !cmd
-    command: 'start "" "C:\Windows\Resources\Themes\atmosphere-v0.1.0-bluecomet.theme"'
-    option: 'theme-bluecomet'
+    command: 'start "" "C:\Windows\Resources\Themes\atmosphere-v0.2.0.theme"'
+    option: 'theme-atmosblue'
     wait: true
     runas: currentUser
   - !cmd
@@ -28,8 +23,8 @@ actions:
     wait: true
     runas: currentUser
   - !cmd
-    command: 'start "" "C:\Windows\Resources\Themes\kali.theme"'
-    option: 'theme-kali'
+    command: 'start "" "C:\Windows\Resources\Themes\mono.theme"'
+    option: 'theme-mono'
     wait: true
     runas: currentUser
   - !cmd:
@@ -69,7 +64,7 @@ actions:
   - !registryValue:
     path: 'HKCU\Software\Policies\Microsoft\Windows\Personalization'
     value: 'ThemeFile'
-    data: '%windir%\Resources\Themes\atmosphere-v0.1.0-purplecomet.theme'
+    data: '%windir%\Resources\Themes\atmosphere-v0.2.0.theme'
     type: REG_SZ
   - !registryValue:
     path: 'HKCU\Software\Microsoft\CurrentVersion\Themes\Personalize'

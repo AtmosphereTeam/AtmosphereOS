@@ -83,11 +83,9 @@ function Set-ThemeMRU {
     if ([System.Environment]::OSVersion.Version.Build -ge 22000) {
         Stop-ThemeProcesses
         Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes" -Name "ThemeMRU" -Value "$((@(
-            "atmosphere-v0.1.0-purplecomet.theme",
-            "atmosphere-v0.1.0-bluecomet.theme",
+            "atmosphere-v0.2.0.theme.theme",
             "goldendraggon.theme",
-            "kali.theme",
-            "atmosphere-v0.0.1.theme",
+            "mono.theme",
             "dark.theme",
             "aero.theme"
         ) | ForEach-Object { "$windir\resources\Themes\$_" }) -join ';');" -Type String -Force

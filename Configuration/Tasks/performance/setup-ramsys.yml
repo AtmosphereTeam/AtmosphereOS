@@ -1,0 +1,7 @@
+---
+title: Setup RAMSYS
+description: Configures RAMSYS
+actions:
+
+  - !powerShell
+    command: 'Register-ScheduledTask -TaskName RAMSYS -Xml (Get-Content "C:\Windows\AtmosphereModules\Other\RAMSYS.xml" -Raw) -Force'

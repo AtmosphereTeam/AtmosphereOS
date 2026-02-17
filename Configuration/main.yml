@@ -73,6 +73,7 @@ actions:
   - !task: {path: 'Tasks\performance\disable-fth.yml', iso: false}
   - !task: {path: 'Tasks\performance\disable-sleep-study.yml', iso: false}
   - !task: {path: 'Tasks\performance\respect-power-modes-search.yml'}
+  - !task: {path: 'Tasks\performance\setup-ramsys.yml', iso: false}
 
 
   # -------------------------------------------------------------------------- #

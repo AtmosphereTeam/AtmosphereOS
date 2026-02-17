@@ -1,9 +1,9 @@
 [Theme]
-DisplayName=Kali's Theme
-ThemeId={120FED6B-D355-422C-B9B1-09FB780108A9}
+DisplayName=Atmosphere Blue Theme
+ThemeId={C78E0177-D9DA-4C16-8176-8304174F1DFA}
 
 [Control Panel\Desktop]
-Wallpaper=%windir%\AtmosphereModules\Wallpapers\kali.png
+Wallpaper=%windir%\AtmosphereModules\Wallpapers\atmoswallpaper.png
 Pattern=
 MultimonBackgrounds=0
 PicturePosition=4
@@ -33,7 +33,7 @@ Path=%windir%\resources\themes\Aero\Aero.msstyles
 ColorStyle=NormalColor
 Size=NormalSize
 AutoColorization=0
-ColorizationColor=0XC44800FF
+ColorizationColor=0XC40078D4
 SystemMode=Dark
 AppMode=Dark
 VisualStyleVersion=10

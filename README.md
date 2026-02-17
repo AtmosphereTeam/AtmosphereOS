@@ -38,7 +38,7 @@ AtmosphereTool is on [GitHub](https://github.com/Goldendraggon/AtmosphereTool)
 - [FluentTerminal](https://github.com/felixse/FluentTerminal) - GPL-3.0
 - [TranslucentFlyouts](https://github.com/ALTaleX531/TranslucentFlyouts) - LGPL-3.0, GPL-3.0
 - [AccentColorizer](https://github.com/krlvm/AccentColorizer) - MIT
-- [AccentColorizer11](https://github.com/krlvm/AccentColorizer-E11)
+- [AccentColorizer11](https://github.com/krlvm/AccentColorizer-E11) - none
 - [Open-Shell](https://github.com/Open-Shell/Open-Shell-Menu) - MIT
-- [Fluent-Metro Skin](https://github.com/bonzibudd/Fluent-Metro)
+- [Fluent-Metro Skin](https://github.com/bonzibudd/Fluent-Metro) - none
 - [ExplorerBlurMica](https://github.com/Maplespe/ExplorerBlurMica) - LGPL-3.0, GPL-3.0

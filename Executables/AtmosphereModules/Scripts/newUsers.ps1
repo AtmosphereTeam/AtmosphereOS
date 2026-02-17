@@ -121,15 +121,15 @@ Start-Process -FilePath "$windir\AtmosphereModules\Scripts\SLNT.bat" -ArgumentLi
 # Set Atmosphere theme as default for current user
 $themeKey = "Registry::HKEY_USERS\$ownerSid\Software\Policies\Microsoft\Windows\Personalization"
 New-Item -Path $themeKey -Force | Out-Null
-Set-ItemProperty -Path $themeKey -Name "ThemeFile" -Value "$windir\Resources\Themes\atmosphere-v0.1.0-purplecomet.theme"
+Set-ItemProperty -Path $themeKey -Name "ThemeFile" -Value "$windir\Resources\Themes\atmosphere-v0.2.0.theme"
 
-# Apply the theme immediately
-Start-Process -FilePath "$windir\Resources\Themes\atmosphere-v0.1.0-purplecomet.theme" -Wait
+# Apply the theme immediately atmosphere-v0.2.0.theme.theme
+Start-Process -FilePath "$windir\Resources\Themes\" -Wait
 Stop-Process -Name "SystemSettings" -Force -ErrorAction SilentlyContinue
 
 # Set custom wallpaper
 $wallpaperKey = "Registry::HKEY_USERS\$ownerSid\Control Panel\Desktop"
-Set-ItemProperty -Path $wallpaperKey -Name "WallPaper" -Value "$windir\AtmosphereModules\Wallpapers\atmosphere-v0.1.0-purplecomet.png"
+Set-ItemProperty -Path $wallpaperKey -Name "WallPaper" -Value "$windir\AtmosphereModules\Wallpapers\atmosphere-v0.2.0.theme.png"
 
 # Set dark mode
 $personalizePath = "Registry::HKEY_USERS\$ownerSid\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize"

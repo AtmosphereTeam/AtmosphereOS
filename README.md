@@ -15,16 +15,16 @@ While based on **AtlasOS**, AtmosphereOS takes a more modular approach — givin
 
 ## 🚧 Current Development Direction
 
-Join our [Discord Server](https://discord.gg/JRsCSV8Tqu) for development updates.
+Join our [Discord Server](https://discord.gg/Aur9PGvzVt) for development updates.
 
 ## 🛠️ AtmosphereTool
 
-While the playbook being powerful on its own, we plan to increase AtmosphereOS capabilities with AtmosphereTool. We plan on moving away from the script based settings folder into our own AtmosphereTool. 
+While the playbook being powerful on its own, we plan to increase AtmosphereOS capabilities with AtmosphereTool.
 AtmosphereTool is on [GitHub](https://github.com/Goldendraggon/AtmosphereTool)
 
 ## Atmosphere Hub
 
-- [Atmosphere Discord Server](https://discord.gg/JRsCSV8Tqu)
+- [Atmosphere Discord Server](https://discord.gg/Aur9PGvzVt)
 - [Atmosphere Website](https://atmosphereos.xyz/)
 
 ## Projects Used

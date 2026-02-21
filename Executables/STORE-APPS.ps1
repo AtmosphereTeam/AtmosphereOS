@@ -15,9 +15,9 @@ Push-Location $tempDir
 
 if ($Files) {
     Write-Output "Downloading Files..."
-    $packagePath = Join-Path $tempDir "Files.Package_3.9.1.0_x64_arm64.msixbundle"
-    & curl.exe -L "https://cdn.files.community/files/stable/Files.Package_3.9.1.0_Test/Files.Package_3.9.1.0_x64_arm64.msixbundle" -o $packagePath
-    Add-AppxPackage -Path $packagePath
+    $packagePath = Join-Path $tempDir "Files.Package.appinstaller"
+    & curl.exe -L "https://cdn.files.community/files/stable/Files.Package.appinstaller" -o $packagePath
+    Add-AppxPackage -AppInstallerFile $packagePath
     Write-Output "Files installed."
     Remove-TempDirectory
 }

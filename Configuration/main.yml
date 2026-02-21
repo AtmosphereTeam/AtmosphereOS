@@ -21,13 +21,14 @@ actions:
   # (for logging purposes i brought this over to main.yml)
   # -------------------------------------------------
   - !task: {path: 'Tasks\copy-folders.yml', iso: false}
-  - !task: {path: 'Tasks\advanced\main.yml', option: 'amelioration'}
   - !status: {status: 'Preparing Atmosphere'}
-  - !task: {path: 'Tasks\advanced\windows defender.yml', option: 'remove-defender'}
-  - !task: {path: 'Tasks\advanced\registry.yml'}
+  # Install ms store apps before possibly destructive changes
   - !task: {path: 'Tasks\software.yml', iso: false, oobe: false} # cache during injection
   - !task: {path: 'Tasks\iso\iso.yml', iso: only, option: 'custom-privacy'}
   - !task: {path: 'Tasks\iso\oobe.yml', oobe: only, option: 'custom-privacy'}
+  - !task: {path: 'Tasks\advanced\main.yml', option: 'amelioration'}
+  - !task: {path: 'Tasks\advanced\windows defender.yml', option: 'remove-defender'}
+  - !task: {path: 'Tasks\advanced\registry.yml'}
   - !task: {path: 'Main\start.yml', iso: false}
   - !task: {path: 'Main\services.yml', option: 'custom-privacy'} 
   - !task: {path: 'Main\components.yml', iso: false}

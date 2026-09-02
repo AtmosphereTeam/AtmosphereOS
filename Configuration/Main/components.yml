@@ -23,15 +23,8 @@ actions:
     # The actual OneDrive setup in Windows is stripped at a component-level in the miscellaneous package
   - !task: {path: 'Tasks\uninstall\onedrive.yml', option: 'uninstall-oned'}
 
-    # Windows components and Telemetry
+    # Windows components
   - !status: {status: 'Removing components'}
-  - !powerShell:
-    command: >-
-      & """$([Environment]::GetFolderPath('Windows'))\AtmosphereModules\Scripts\packageInstall.ps1"""
-      -InstallPackages @('*Z-Atmosphere-NoTelemetry-Package*')
-      -NoInteraction
-    wait: true
-    exeDir: true
   - !powerShell:
     command: >-
       & """$([Environment]::GetFolderPath('Windows'))\AtmosphereModules\Scripts\packageInstall.ps1"""

@@ -85,7 +85,7 @@ function Set-ThemeMRU {
         Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes" -Name "ThemeMRU" -Value "$((@(
             "atmosphere-v0.2.0.theme.theme",
             "goldendraggon.theme",
-            "mono.theme",
+            "mountians.theme",
             "dark.theme",
             "aero.theme"
         ) | ForEach-Object { "$windir\resources\Themes\$_" }) -join ';');" -Type String -Force

@@ -5,3 +5,8 @@ actions:
 
   - !powerShell
     command: 'Register-ScheduledTask -TaskName RAMSYS -Xml (Get-Content "C:\Windows\AtmosphereModules\Other\RAMSYS.xml" -Raw) -Force'
+  - !registryValue:
+    path: 'HKLM\SOFTWARE\Atmosphere'
+    value: 'RAMSYS'
+    data: '1'
+    type: REG_SZ

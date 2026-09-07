@@ -1,9 +1,9 @@
 [Theme]
-DisplayName=Mountians Theme
+DisplayName=Mountains Theme
 ThemeId={120FED6B-D355-422C-B9B1-09FB780108A9}
 
 [Control Panel\Desktop]
-Wallpaper=%windir%\AtmosphereModules\Wallpapers\mountians.png
+Wallpaper=%windir%\AtmosphereModules\Wallpapers\mountains.png
 Pattern=
 MultimonBackgrounds=0
 PicturePosition=4

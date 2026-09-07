@@ -186,7 +186,7 @@ $Themes = [ordered] @{
     "theme-purplecomet" = "atmosphere-v0.2.0.theme.theme"
     "theme-bluecomet" = "atmosphere-v0.1.0-bluecomet.theme"
     "theme-goldendraggon" = "goldendraggon.theme"
-    "theme-mountians" = "mountians.theme"
+    "theme-mountains" = "mountains.theme"
 }
 
 foreach ($Theme in $Themes.GetEnumerator()) {

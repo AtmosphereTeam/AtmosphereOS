@@ -26,10 +26,7 @@ actions:
     # Windows components
   - !status: {status: 'Removing components'}
   - !powerShell:
-    command: >-
-      & """$([Environment]::GetFolderPath('Windows'))\AtmosphereModules\Scripts\packageInstall.ps1"""
-      -UninstallPackages @('*Z-AME-NoDefender-Package*')
-      -NoInteraction
+    command: C:\WINDOWS\AtmosphereModules\Scripts\packageInstall.ps1 -UninstallPackages @('Z-AME-NoDefender-Package*') -NoInteraction
     option: 'defender-enable'
     wait: true
     exeDir: true

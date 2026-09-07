@@ -23,8 +23,8 @@ actions:
     wait: true
     runas: currentUser
   - !cmd
-    command: 'start "" "C:\Windows\Resources\Themes\mountians.theme"'
-    option: 'theme-mountians'
+    command: 'start "" "C:\Windows\Resources\Themes\mountains.theme"'
+    option: 'theme-mountains'
     wait: true
     runas: currentUser
   - !cmd:
